@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AppointmentRepository - Pruebas de detección de solapamientos y sincronización" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-02T14:07:36" hostname="eddysamgt-desktop" time="0.032">
+  <properties/>
+  <testcase name="Debe encontrar citas pendientes de sincronización con Google Calendar" classname="com.cecamed.core.repository.AppointmentRepositoryTest" time="0.016"/>
+  <testcase name="Debe detectar citas solapadas en el mismo horario" classname="com.cecamed.core.repository.AppointmentRepositoryTest" time="0.015"/>
+  <system-out><![CDATA[2026-09-02T08:07:36.732-06:00  INFO 15958 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cecamed.core.repository.AppointmentRepositoryTest]: AppointmentRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-02T08:07:36.736-06:00  INFO 15958 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cecamed.core.TestCoreDbApplication for test class com.cecamed.core.repository.AppointmentRepositoryTest
+Hibernate: 
+    insert 
+    into
+        patients
+        (active, address, birth_date, blood_type, created_at, email, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship, first_name, gender, identification_number, last_name, notes, phone, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        appointments
+        (cancellation_reason, created_at, end_time, google_calendar_id, google_event_id, google_html_link, google_last_synced_at, google_sync_status, notes, patient_id, reason_for_visit, start_time, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.cancellation_reason,
+        a1_0.created_at,
+        a1_0.end_time,
+        a1_0.google_calendar_id,
+        a1_0.google_event_id,
+        a1_0.google_html_link,
+        a1_0.google_last_synced_at,
+        a1_0.google_sync_status,
+        a1_0.notes,
+        a1_0.patient_id,
+        a1_0.reason_for_visit,
+        a1_0.start_time,
+        a1_0.status,
+        a1_0.updated_at,
+        a1_0.version 
+    from
+        appointments a1_0 
+    where
+        a1_0.google_sync_status=?
+Hibernate: 
+    insert 
+    into
+        patients
+        (active, address, birth_date, blood_type, created_at, email, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship, first_name, gender, identification_number, last_name, notes, phone, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        appointments
+        (cancellation_reason, created_at, end_time, google_calendar_id, google_event_id, google_html_link, google_last_synced_at, google_sync_status, notes, patient_id, reason_for_visit, start_time, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        count(a1_0.id)>0 
+    from
+        appointments a1_0 
+    where
+        a1_0.status<>'CANCELADA' 
+        and a1_0.start_time<? 
+        and a1_0.end_time>? 
+        and (
+            ? is null 
+            or a1_0.id<>?
+        )
+Hibernate: 
+    select
+        count(a1_0.id)>0 
+    from
+        appointments a1_0 
+    where
+        a1_0.status<>'CANCELADA' 
+        and a1_0.start_time<? 
+        and a1_0.end_time>? 
+        and (
+            ? is null 
+            or a1_0.id<>?
+        )
+Hibernate: 
+    select
+        count(a1_0.id)>0 
+    from
+        appointments a1_0 
+    where
+        a1_0.status<>'CANCELADA' 
+        and a1_0.start_time<? 
+        and a1_0.end_time>? 
+        and (
+            ? is null 
+            or a1_0.id<>?
+        )
+Hibernate: 
+    select
+        count(a1_0.id)>0 
+    from
+        appointments a1_0 
+    where
+        a1_0.status<>'CANCELADA' 
+        and a1_0.start_time<? 
+        and a1_0.end_time>? 
+        and (
+            ? is null 
+            or a1_0.id<>?
+        )
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

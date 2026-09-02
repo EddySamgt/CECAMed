@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MedicalRecordRepository - Pruebas de persistencia del expediente clínico" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-02T14:07:36" hostname="eddysamgt-desktop" time="0.014">
+  <properties/>
+  <testcase name="Debe guardar expediente asociado a paciente y buscar por número de expediente" classname="com.cecamed.core.repository.MedicalRecordRepositoryTest" time="0.014"/>
+  <system-out><![CDATA[2026-09-02T08:07:36.859-06:00  INFO 15958 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cecamed.core.repository.MedicalRecordRepositoryTest]: MedicalRecordRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-02T08:07:36.862-06:00  INFO 15958 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cecamed.core.TestCoreDbApplication for test class com.cecamed.core.repository.MedicalRecordRepositoryTest
+Hibernate: 
+    insert 
+    into
+        patients
+        (active, address, birth_date, blood_type, created_at, email, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship, first_name, gender, identification_number, last_name, notes, phone, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        medical_records
+        (allergies, created_at, current_medications, family_history, general_observations, non_pathological_history, pathological_history, patient_id, record_number, surgical_history, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        mr1_0.id,
+        mr1_0.allergies,
+        mr1_0.created_at,
+        mr1_0.current_medications,
+        mr1_0.family_history,
+        mr1_0.general_observations,
+        mr1_0.non_pathological_history,
+        mr1_0.pathological_history,
+        mr1_0.patient_id,
+        mr1_0.record_number,
+        mr1_0.surgical_history,
+        mr1_0.updated_at,
+        mr1_0.version 
+    from
+        medical_records mr1_0 
+    where
+        mr1_0.record_number=?
+Hibernate: 
+    select
+        mr1_0.id,
+        mr1_0.allergies,
+        mr1_0.created_at,
+        mr1_0.current_medications,
+        mr1_0.family_history,
+        mr1_0.general_observations,
+        mr1_0.non_pathological_history,
+        mr1_0.pathological_history,
+        mr1_0.patient_id,
+        mr1_0.record_number,
+        mr1_0.surgical_history,
+        mr1_0.updated_at,
+        mr1_0.version 
+    from
+        medical_records mr1_0 
+    where
+        mr1_0.patient_id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

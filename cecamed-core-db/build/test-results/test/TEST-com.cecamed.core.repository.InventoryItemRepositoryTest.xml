@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="InventoryItemRepository - Pruebas de stock y alertas de inventario" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-02T14:07:36" hostname="eddysamgt-desktop" time="0.024">
+  <properties/>
+  <testcase name="Debe consultar items próximos a vencer" classname="com.cecamed.core.repository.InventoryItemRepositoryTest" time="0.012"/>
+  <testcase name="Debe consultar items con stock bajo o igual al límite mínimo (alertas de stock)" classname="com.cecamed.core.repository.InventoryItemRepositoryTest" time="0.011"/>
+  <system-out><![CDATA[2026-09-02T08:07:36.807-06:00  INFO 15958 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cecamed.core.repository.InventoryItemRepositoryTest]: InventoryItemRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-02T08:07:36.811-06:00  INFO 15958 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cecamed.core.TestCoreDbApplication for test class com.cecamed.core.repository.InventoryItemRepositoryTest
+Hibernate: 
+    insert 
+    into
+        inventory_items
+        (category, code, created_at, current_stock, description, expiration_date, generic_name, is_active, location_in_clinic, lot_number, max_stock, min_stock_alert, name, selling_price, unit_cost, unit_of_measure, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        inventory_items
+        (category, code, created_at, current_stock, description, expiration_date, generic_name, is_active, location_in_clinic, lot_number, max_stock, min_stock_alert, name, selling_price, unit_cost, unit_of_measure, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        ii1_0.id,
+        ii1_0.category,
+        ii1_0.code,
+        ii1_0.created_at,
+        ii1_0.current_stock,
+        ii1_0.description,
+        ii1_0.expiration_date,
+        ii1_0.generic_name,
+        ii1_0.is_active,
+        ii1_0.location_in_clinic,
+        ii1_0.lot_number,
+        ii1_0.max_stock,
+        ii1_0.min_stock_alert,
+        ii1_0.name,
+        ii1_0.selling_price,
+        ii1_0.unit_cost,
+        ii1_0.unit_of_measure,
+        ii1_0.updated_at,
+        ii1_0.version 
+    from
+        inventory_items ii1_0 
+    where
+        ii1_0.is_active=true 
+        and ii1_0.expiration_date is not null 
+        and ii1_0.expiration_date<=? 
+    order by
+        ii1_0.expiration_date
+Hibernate: 
+    insert 
+    into
+        inventory_items
+        (category, code, created_at, current_stock, description, expiration_date, generic_name, is_active, location_in_clinic, lot_number, max_stock, min_stock_alert, name, selling_price, unit_cost, unit_of_measure, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        inventory_items
+        (category, code, created_at, current_stock, description, expiration_date, generic_name, is_active, location_in_clinic, lot_number, max_stock, min_stock_alert, name, selling_price, unit_cost, unit_of_measure, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        inventory_items
+        (category, code, created_at, current_stock, description, expiration_date, generic_name, is_active, location_in_clinic, lot_number, max_stock, min_stock_alert, name, selling_price, unit_cost, unit_of_measure, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        ii1_0.id,
+        ii1_0.category,
+        ii1_0.code,
+        ii1_0.created_at,
+        ii1_0.current_stock,
+        ii1_0.description,
+        ii1_0.expiration_date,
+        ii1_0.generic_name,
+        ii1_0.is_active,
+        ii1_0.location_in_clinic,
+        ii1_0.lot_number,
+        ii1_0.max_stock,
+        ii1_0.min_stock_alert,
+        ii1_0.name,
+        ii1_0.selling_price,
+        ii1_0.unit_cost,
+        ii1_0.unit_of_measure,
+        ii1_0.updated_at,
+        ii1_0.version 
+    from
+        inventory_items ii1_0 
+    where
+        ii1_0.is_active=true 
+        and ii1_0.current_stock<=ii1_0.min_stock_alert 
+    order by
+        (ii1_0.current_stock-ii1_0.min_stock_alert),
+        ii1_0.name
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

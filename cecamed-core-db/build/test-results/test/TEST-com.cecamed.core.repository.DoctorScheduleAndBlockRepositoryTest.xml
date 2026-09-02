@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="DoctorSchedule &amp; ScheduleBlock Repositories - Pruebas de jornadas y bloqueos" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-02T14:07:36" hostname="eddysamgt-desktop" time="0.027">
+  <properties/>
+  <testcase name="Debe consultar horario médico activo por día de la semana" classname="com.cecamed.core.repository.DoctorScheduleAndBlockRepositoryTest" time="0.015"/>
+  <testcase name="Debe verificar si un rango de tiempo está bloqueado por un ScheduleBlock" classname="com.cecamed.core.repository.DoctorScheduleAndBlockRepositoryTest" time="0.011"/>
+  <system-out><![CDATA[2026-09-02T08:07:36.772-06:00  INFO 15958 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cecamed.core.repository.DoctorScheduleAndBlockRepositoryTest]: DoctorScheduleAndBlockRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-09-02T08:07:36.776-06:00  INFO 15958 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cecamed.core.TestCoreDbApplication for test class com.cecamed.core.repository.DoctorScheduleAndBlockRepositoryTest
+Hibernate: 
+    insert 
+    into
+        doctor_schedules
+        (created_at, day_of_week, end_time, is_active, slot_duration_minutes, start_time, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        ds1_0.id,
+        ds1_0.created_at,
+        ds1_0.day_of_week,
+        ds1_0.end_time,
+        ds1_0.is_active,
+        ds1_0.slot_duration_minutes,
+        ds1_0.start_time,
+        ds1_0.updated_at,
+        ds1_0.version 
+    from
+        doctor_schedules ds1_0 
+    where
+        ds1_0.day_of_week=? 
+        and ds1_0.is_active
+Hibernate: 
+    select
+        ds1_0.id,
+        ds1_0.created_at,
+        ds1_0.day_of_week,
+        ds1_0.end_time,
+        ds1_0.is_active,
+        ds1_0.slot_duration_minutes,
+        ds1_0.start_time,
+        ds1_0.updated_at,
+        ds1_0.version 
+    from
+        doctor_schedules ds1_0 
+    where
+        ds1_0.day_of_week=? 
+        and ds1_0.is_active
+Hibernate: 
+    insert 
+    into
+        schedule_blocks
+        (all_day, block_type, created_at, end_date_time, google_event_id, reason, start_date_time, title, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        count(sb1_0.id)>0 
+    from
+        schedule_blocks sb1_0 
+    where
+        sb1_0.start_date_time<? 
+        and sb1_0.end_date_time>?
+Hibernate: 
+    select
+        count(sb1_0.id)>0 
+    from
+        schedule_blocks sb1_0 
+    where
+        sb1_0.start_date_time<? 
+        and sb1_0.end_date_time>?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -31,6 +31,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import com.cecamed.calendar.rules.DoctorScheduleValidationRule;
+import com.cecamed.calendar.service.AppointmentCalendarSyncService;
+import com.cecamed.calendar.service.GoogleCalendarAvailabilityService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -42,6 +47,15 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final ScheduleBlockRepository scheduleBlockRepository;
     private final PatientRepository patientRepository;
     private final AppointmentMapper appointmentMapper;
+
+    @Autowired(required = false)
+    private AppointmentCalendarSyncService appointmentCalendarSyncService;
+
+    @Autowired(required = false)
+    private DoctorScheduleValidationRule doctorScheduleValidationRule;
+
+    @Autowired(required = false)
+    private GoogleCalendarAvailabilityService googleCalendarAvailabilityService;
 
     @Override
     @Transactional
@@ -66,6 +80,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         Appointment saved = appointmentRepository.save(appointment);
         log.info("Cita creada exitosamente con ID: {}", saved.getId());
+
+        if (appointmentCalendarSyncService != null) {
+            try {
+                appointmentCalendarSyncService.syncAppointment(saved);
+            } catch (Exception e) {
+                log.warn("No se pudo sincronizar automáticamente con Google Calendar: {}", e.getMessage());
+            }
+        }
 
         return appointmentMapper.toResponseDto(saved);
     }
@@ -100,6 +122,15 @@ public class AppointmentServiceImpl implements AppointmentService {
         }
 
         Appointment updated = appointmentRepository.save(appointment);
+
+        if (appointmentCalendarSyncService != null) {
+            try {
+                appointmentCalendarSyncService.syncAppointment(updated);
+            } catch (Exception e) {
+                log.warn("No se pudo sincronizar reprogramación con Google Calendar: {}", e.getMessage());
+            }
+        }
+
         return appointmentMapper.toResponseDto(updated);
     }
 
@@ -120,6 +151,15 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointment.setGoogleSyncStatus(GoogleSyncStatus.PENDING);
 
         Appointment updated = appointmentRepository.save(appointment);
+
+        if (appointmentCalendarSyncService != null) {
+            try {
+                appointmentCalendarSyncService.cancelAppointmentEvent(updated);
+            } catch (Exception e) {
+                log.warn("No se pudo sincronizar cancelación con Google Calendar: {}", e.getMessage());
+            }
+        }
+
         return appointmentMapper.toResponseDto(updated);
     }
 
@@ -162,6 +202,17 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<AvailableSlotDto> getAvailableSlotsForDate(LocalDate date) {
+        if (googleCalendarAvailabilityService != null) {
+            return googleCalendarAvailabilityService.getUnifiedSlots(date).stream()
+                    .map(slot -> AvailableSlotDto.builder()
+                            .startTime(slot.getStart())
+                            .endTime(slot.getEnd())
+                            .available(!slot.isBusy())
+                            .reasonIfNotAvailable(slot.getDescription())
+                            .build())
+                    .toList();
+        }
+
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         Optional<DoctorSchedule> scheduleOpt = doctorScheduleRepository.findByDayOfWeekAndIsActiveTrue(dayOfWeek);
 
@@ -213,9 +264,16 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     private void validateNoConflict(LocalDateTime startTime, LocalDateTime endTime, Long excludeAppointmentId) {
-        // Verificar bloqueos de agenda
-        if (scheduleBlockRepository.isTimeRangeBlocked(startTime, endTime)) {
-            throw new BusinessRuleException("El intervalo seleccionado coincide con un período de bloqueo de agenda médica");
+        if (doctorScheduleValidationRule != null) {
+            var ruleResult = doctorScheduleValidationRule.validateSlot(startTime, endTime);
+            if (!ruleResult.isValid()) {
+                throw new BusinessRuleException(ruleResult.getErrorMessage());
+            }
+        } else {
+            // Verificación interna de bloqueos clínicos
+            if (scheduleBlockRepository.isTimeRangeBlocked(startTime, endTime)) {
+                throw new BusinessRuleException("El intervalo seleccionado coincide con un período de bloqueo de agenda médica");
+            }
         }
 
         // Verificar solapamiento con otras citas activas

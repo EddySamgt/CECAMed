@@ -20,6 +20,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.cecamed.calendar.service.AppointmentCalendarSyncService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -29,6 +32,9 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     private final DoctorScheduleRepository doctorScheduleRepository;
     private final ScheduleBlockRepository scheduleBlockRepository;
     private final AppointmentMapper appointmentMapper;
+
+    @Autowired(required = false)
+    private AppointmentCalendarSyncService appointmentCalendarSyncService;
 
     @Override
     @Transactional
@@ -78,6 +84,14 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
         ScheduleBlock saved = scheduleBlockRepository.save(block);
         log.info("Bloqueo de agenda creado con ID: {}", saved.getId());
 
+        if (appointmentCalendarSyncService != null) {
+            try {
+                appointmentCalendarSyncService.syncScheduleBlock(saved);
+            } catch (Exception e) {
+                log.warn("No se pudo sincronizar bloqueo con Google Calendar: {}", e.getMessage());
+            }
+        }
+
         return appointmentMapper.toResponseDto(saved);
     }
 
@@ -91,10 +105,18 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     @Override
     @Transactional
     public void deleteScheduleBlock(Long blockId) {
-        if (!scheduleBlockRepository.existsById(blockId)) {
-            throw new ResourceNotFoundException("Bloqueo de agenda", "id", blockId);
+        ScheduleBlock block = scheduleBlockRepository.findById(blockId)
+                .orElseThrow(() -> new ResourceNotFoundException("Bloqueo de agenda", "id", blockId));
+
+        if (appointmentCalendarSyncService != null && block.getGoogleEventId() != null) {
+            try {
+                appointmentCalendarSyncService.deleteScheduleBlockEvent(block);
+            } catch (Exception e) {
+                log.warn("No se pudo eliminar evento de bloqueo en Google Calendar: {}", e.getMessage());
+            }
         }
-        scheduleBlockRepository.deleteById(blockId);
+
+        scheduleBlockRepository.delete(block);
         log.info("Bloqueo de agenda ID {} eliminado", blockId);
     }
 }

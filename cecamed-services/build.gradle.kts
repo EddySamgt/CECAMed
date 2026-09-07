@@ -10,6 +10,7 @@ dependencyManagement {
 
 dependencies {
     api(project(":cecamed-core-db"))
+    implementation(project(":cecamed-calendar-integration"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("com.h2database:h2")
 }

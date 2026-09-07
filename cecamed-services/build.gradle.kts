@@ -11,4 +11,5 @@ dependencyManagement {
 dependencies {
     api(project(":cecamed-core-db"))
     implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("com.h2database:h2")
 }

@@ -1,0 +1,87 @@
+# =============================================================================
+# CECAMed - .gitignore
+# Java 21, Gradle 8+, Spring Boot 3+, IntelliJ IDEA, Local File Storage
+# =============================================================================
+
+# Gradle & Build Artifacts
+.gradle/
+build/
+**/build/
+!src/**/build/
+*.class
+
+# Keep gradle-wrapper.jar but ignore other jars
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# JVM Crash Logs
+hs_err_pid*
+replay_pid*
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+**/out/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbproject/load-factor.properties
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Local Configuration & Sensitive Credentials (OAuth / Google Service Accounts)
+*.local.properties
+.env
+.env.local
+service-account*.json
+credentials*.json
+tokens/
+
+# Local Clinical Storage / Uploaded Patient Documents (File System Storage)
+uploads/
+storage/
+attachments/
+**/uploads/
+**/storage/
+**/attachments/
+
+# Logs & Temporary Files
+*.log
+logs/
+**/logs/
+*.tmp
+*.bak
+*.swp
+*~

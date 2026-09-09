@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cecamed.ui.controller.DashboardController">
+
+    <content>
+        <VBox spacing="24.0" styleClass="content-pane">
+            <!-- Header -->
+            <VBox styleClass="page-header">
+                <Label fx:id="welcomeLabel" styleClass="page-title" text="¡Bienvenido a CECAMed!"/>
+                <Label styleClass="page-subtitle" text="Resumen operativo del día, flujo de pacientes y accesos directos"/>
+            </VBox>
+
+            <!-- Stat Cards Metrics -->
+            <HBox fx:id="statCardsContainer" spacing="16.0">
+                <!-- Dynamically populated with StatCard components -->
+            </HBox>
+
+            <!-- Main Working Area: Split into Appointments List and Quick Actions -->
+            <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                <!-- Left: Citas de Hoy -->
+                <VBox spacing="14.0" styleClass="cecamed-card" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <FontIcon iconColor="#0288D1" iconLiteral="feather-calendar" iconSize="20"/>
+                        <VBox>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 15px;" text="Citas Médicas de Hoy"/>
+                            <Label styleClass="page-subtitle" style="-fx-font-size: 11px;" text="Pacientes citados y estado de atención en tiempo real"/>
+                        </VBox>
+                    </HBox>
+
+                    <Separator/>
+
+                    <TableView fx:id="upcomingAppointmentsTable" prefHeight="380.0" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colTime" prefWidth="80.0" text="Hora"/>
+                            <TableColumn fx:id="colPatient" prefWidth="240.0" text="Paciente"/>
+                            <TableColumn fx:id="colReason" prefWidth="250.0" text="Motivo de Consulta"/>
+                            <TableColumn fx:id="colStatus" prefWidth="160.0" text="Estado"/>
+                        </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
+                    </TableView>
+                </VBox>
+
+                <!-- Right: Quick Actions & Clinical Info -->
+                <VBox prefWidth="320.0" spacing="16.0">
+                    <!-- Quick Actions Card -->
+                    <VBox spacing="14.0" styleClass="cecamed-card">
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <FontIcon iconColor="#D32F2F" iconLiteral="feather-zap" iconSize="18"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Acciones Rápidas"/>
+                        </HBox>
+
+                        <Separator/>
+
+                        <VBox spacing="10.0">
+                            <Button maxWidth="Infinity" onAction="#handleQuickNewPatient" styleClass="primary-button"
+                                    text="Registrar Paciente">
+                                <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="feather-user-plus" iconSize="16"/>
+                                </graphic>
+                            </Button>
+
+                            <Button maxWidth="Infinity" onAction="#handleQuickNewAppointment" styleClass="accent-button"
+                                    text="Nueva Cita Médica">
+                                <graphic>
+                                    <FontIcon iconColor="WHITE" iconLiteral="feather-calendar" iconSize="16"/>
+                                </graphic>
+                            </Button>
+
+                            <Button maxWidth="Infinity" onAction="#handleQuickWaitingRoom" styleClass="ghost-button"
+                                    style="-fx-alignment: CENTER_LEFT; -fx-border-color: #E2E8F0; -fx-border-radius: 6;"
+                                    text="Sala de Espera / Check-in">
+                                <graphic>
+                                    <FontIcon iconLiteral="feather-clock" iconSize="16"/>
+                                </graphic>
+                            </Button>
+
+                            <Button maxWidth="Infinity" onAction="#handleQuickViewAgenda" styleClass="ghost-button"
+                                    style="-fx-alignment: CENTER_LEFT; -fx-border-color: #E2E8F0; -fx-border-radius: 6;"
+                                    text="Ver Agenda Completa">
+                                <graphic>
+                                    <FontIcon iconLiteral="feather-list" iconSize="16"/>
+                                </graphic>
+                            </Button>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Operational System Info Card -->
+                    <VBox spacing="12.0" styleClass="cecamed-card">
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <FontIcon iconColor="#16A34A" iconLiteral="feather-shield" iconSize="18"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Estado Operativo"/>
+                        </HBox>
+
+                        <Separator/>
+
+                        <VBox spacing="8.0">
+                            <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                <FontIcon iconColor="#16A34A" iconLiteral="feather-database" iconSize="14"/>
+                                <Label styleClass="form-help-text" text="Base de Datos: "/>
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 11px;" text="Conectada / Activa"/>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                <FontIcon iconColor="#0288D1" iconLiteral="feather-cloud" iconSize="14"/>
+                                <Label styleClass="form-help-text" text="Google Calendar: "/>
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 11px;" text="Sincronizado"/>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                <FontIcon iconColor="#64748B" iconLiteral="feather-check-square" iconSize="14"/>
+                                <Label styleClass="form-help-text" text="Auditoría: "/>
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 11px;" text="Activa"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </content>
+</ScrollPane>

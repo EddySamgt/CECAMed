@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane prefHeight="760.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cecamed.ui.controller.MainLayoutController">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="cecamed-topbar">
+            <!-- Brand & Clock -->
+            <HBox alignment="CENTER_LEFT" spacing="12.0">
+                <FontIcon iconColor="#D32F2F" iconLiteral="feather-activity" iconSize="26"/>
+                <VBox alignment="CENTER_LEFT">
+                    <Label styleClass="brand-title" style="-fx-font-size: 17px;" text="CECAMed"/>
+                    <Label styleClass="brand-subtitle" style="-fx-font-size: 10px;" text="Control &amp; Gestión Médica"/>
+                </VBox>
+            </HBox>
+
+            <Separator orientation="VERTICAL"/>
+
+            <HBox alignment="CENTER_LEFT" spacing="8.0">
+                <FontIcon iconColor="#64748B" iconLiteral="feather-calendar" iconSize="16"/>
+                <Label fx:id="clockLabel" styleClass="page-subtitle" text="Lunes, 1 de Enero..."/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Right: Google Sync Indicator, Theme Toggle, User Profile & Logout -->
+            <HBox alignment="CENTER_RIGHT" spacing="14.0">
+                <!-- Google Sync Badge Container -->
+                <HBox fx:id="syncBadgeContainer" alignment="CENTER"/>
+
+                <Separator orientation="VERTICAL"/>
+
+                <!-- Theme Toggle Button -->
+                <Button onAction="#handleToggleTheme" styleClass="ghost-button" tooltip="$null">
+                    <graphic>
+                        <FontIcon fx:id="toggleThemeIcon" iconLiteral="feather-moon" iconSize="18"/>
+                    </graphic>
+                </Button>
+
+                <!-- User Card Info -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <FontIcon iconColor="#0288D1" iconLiteral="feather-user" iconSize="20"/>
+                    <VBox alignment="CENTER_LEFT">
+                        <Label fx:id="userFullNameLabel" style="-fx-font-weight: bold;" text="Dr. Carlos Morales"/>
+                        <Label fx:id="userRoleLabel" styleClass="page-subtitle" style="-fx-font-size: 11px;" text="Médico Especialista"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Logout Button -->
+                <Button onAction="#handleLogout" styleClass="ghost-button" text="Salir">
+                    <graphic>
+                        <FontIcon iconColor="#D32F2F" iconLiteral="feather-log-out" iconSize="16"/>
+                    </graphic>
+                </Button>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="cecamed-sidebar">
+            <Label styleClass="nav-section-label" text="OPERACIÓN CLÍNICA"/>
+
+            <Button fx:id="btnDashboard" onAction="#handleNavDashboard" styleClass="nav-button" text="Dashboard">
+                <graphic>
+                    <FontIcon iconLiteral="feather-home" iconSize="18"/>
+                </graphic>
+            </Button>
+
+            <Button fx:id="btnPatients" onAction="#handleNavPatients" styleClass="nav-button" text="Pacientes">
+                <graphic>
+                    <FontIcon iconLiteral="feather-users" iconSize="18"/>
+                </graphic>
+            </Button>
+
+            <Button fx:id="btnMedicalRecord" onAction="#handleNavMedicalRecord" styleClass="nav-button" text="Expediente Clínico">
+                <graphic>
+                    <FontIcon iconLiteral="feather-clipboard" iconSize="18"/>
+                </graphic>
+            </Button>
+
+            <Button fx:id="btnAppointments" onAction="#handleNavAppointments" styleClass="nav-button" text="Agenda Médica">
+                <graphic>
+                    <FontIcon iconLiteral="feather-calendar" iconSize="18"/>
+                </graphic>
+            </Button>
+
+            <Button fx:id="btnReception" onAction="#handleNavReception" styleClass="nav-button" text="Recepción &amp; Espera">
+                <graphic>
+                    <FontIcon iconLiteral="feather-inbox" iconSize="18"/>
+                </graphic>
+            </Button>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Separator/>
+            <Label styleClass="nav-section-label" text="ADMINISTRACIÓN"/>
+
+            <Button fx:id="btnSettings" onAction="#handleNavSettings" styleClass="nav-button" text="Configuración">
+                <graphic>
+                    <FontIcon iconLiteral="feather-settings" iconSize="18"/>
+                </graphic>
+            </Button>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: transparent;">
+            <!-- Dynamic view injected here by NavigationService -->
+        </StackPane>
+    </center>
+
+</BorderPane>

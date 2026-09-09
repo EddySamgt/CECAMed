@@ -1,0 +1,163 @@
+/* ==========================================================================
+   CECAMed - Light Mode Theme
+   ========================================================================== */
+
+.root {
+    -fx-base: #FFFFFF;
+    -fx-background: #F8FAFC;
+}
+
+.cecamed-topbar {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0;
+}
+
+.cecamed-sidebar {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0;
+}
+
+.brand-title {
+    -fx-text-fill: #D32F2F; /* Rojo médico institucional */
+}
+
+.brand-subtitle {
+    -fx-text-fill: #64748B;
+}
+
+.nav-section-label {
+    -fx-text-fill: #94A3B8;
+}
+
+.nav-button {
+    -fx-text-fill: #334155;
+    -fx-background-color: transparent;
+}
+
+.nav-button.active {
+    -fx-background-color: #E0F2FE;
+    -fx-text-fill: #0288D1;
+}
+
+.cecamed-card {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0;
+}
+
+.page-title {
+    -fx-text-fill: #0F172A;
+}
+
+.page-subtitle {
+    -fx-text-fill: #64748B;
+}
+
+.form-field-label {
+    -fx-text-fill: #1E293B;
+}
+
+.form-help-text {
+    -fx-text-fill: #64748B;
+}
+
+/* Primary Button (Medical Red Accent) */
+.primary-button {
+    -fx-background-color: #D32F2F;
+    -fx-text-fill: #FFFFFF;
+}
+
+.primary-button:hover {
+    -fx-background-color: #B71C1C;
+}
+
+/* Accent Button (Medical Cyan) */
+.accent-button {
+    -fx-background-color: #0288D1;
+    -fx-text-fill: #FFFFFF;
+}
+
+.accent-button:hover {
+    -fx-background-color: #0277BD;
+}
+
+/* Badges */
+.badge-success {
+    -fx-background-color: #DCFCE7;
+    -fx-text-fill: #166534;
+}
+.badge-success .ikonli-font-icon {
+    -fx-icon-color: #166534;
+}
+
+.badge-warning {
+    -fx-background-color: #FEF3C7;
+    -fx-text-fill: #92400E;
+}
+.badge-warning .ikonli-font-icon {
+    -fx-icon-color: #92400E;
+}
+
+.badge-danger {
+    -fx-background-color: #FEE2E2;
+    -fx-text-fill: #991B1B;
+}
+.badge-danger .ikonli-font-icon {
+    -fx-icon-color: #991B1B;
+}
+
+.badge-info {
+    -fx-background-color: #E0F2FE;
+    -fx-text-fill: #075985;
+}
+.badge-info .ikonli-font-icon {
+    -fx-icon-color: #075985;
+}
+
+.badge-secondary {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #475569;
+}
+.badge-secondary .ikonli-font-icon {
+    -fx-icon-color: #475569;
+}
+
+/* Stat Cards */
+.stat-title {
+    -fx-text-fill: #64748B;
+}
+
+.stat-value {
+    -fx-text-fill: #0F172A;
+}
+
+.stat-subtitle {
+    -fx-text-fill: #94A3B8;
+}
+
+.primary-icon {
+    -fx-background-color: #FEE2E2;
+}
+.primary-icon .ikonli-font-icon {
+    -fx-icon-color: #D32F2F;
+}
+
+.accent-icon {
+    -fx-background-color: #E0F2FE;
+}
+.accent-icon .ikonli-font-icon {
+    -fx-icon-color: #0288D1;
+}
+
+.success-icon {
+    -fx-background-color: #DCFCE7;
+}
+.success-icon .ikonli-font-icon {
+    -fx-icon-color: #16A34A;
+}
+
+.warning-icon {
+    -fx-background-color: #FEF3C7;
+}
+.warning-icon .ikonli-font-icon {
+    -fx-icon-color: #D97706;
+}

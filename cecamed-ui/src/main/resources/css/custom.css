@@ -1,0 +1,199 @@
+/* ==========================================================================
+   CECAMed - Custom Styling & Medical Desktop System Tokens
+   ========================================================================== */
+
+.root {
+    -fx-font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   TopBar & Navigation Sidebar
+   -------------------------------------------------------------------------- */
+.cecamed-topbar {
+    -fx-padding: 8px 20px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.cecamed-sidebar {
+    -fx-pref-width: 240px;
+    -fx-min-width: 240px;
+    -fx-padding: 16px 12px;
+    -fx-spacing: 6px;
+    -fx-border-width: 0 1px 0 0;
+}
+
+.sidebar-brand-box {
+    -fx-padding: 8px 12px 20px 12px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 10px;
+}
+
+.brand-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.brand-subtitle {
+    -fx-font-size: 11px;
+}
+
+.nav-section-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 14px 12px 6px 12px;
+    -fx-text-transform: uppercase;
+}
+
+.nav-button {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 9px 14px;
+    -fx-graphic-text-gap: 12px;
+    -fx-font-size: 13px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-max-width: Infinity;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(2, 136, 209, 0.12);
+}
+
+.nav-button.active {
+    -fx-font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------
+   Cards, Panels & Containers
+   -------------------------------------------------------------------------- */
+.cecamed-card {
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 18px;
+}
+
+.content-pane {
+    -fx-padding: 24px;
+    -fx-spacing: 20px;
+}
+
+.page-header {
+    -fx-spacing: 4px;
+}
+
+.page-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons & Actions
+   -------------------------------------------------------------------------- */
+.primary-button {
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+}
+
+.accent-button {
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+}
+
+.danger-button {
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+}
+
+.ghost-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-padding: 6px 12px;
+    -fx-cursor: hand;
+}
+
+/* --------------------------------------------------------------------------
+   Status Badges
+   -------------------------------------------------------------------------- */
+.status-badge {
+    -fx-padding: 3px 10px;
+    -fx-background-radius: 14px;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------
+   Stat Cards (Dashboard)
+   -------------------------------------------------------------------------- */
+.stat-card {
+    -fx-pref-height: 96px;
+    -fx-min-width: 220px;
+}
+
+.stat-title {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.stat-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.stat-subtitle {
+    -fx-font-size: 11px;
+}
+
+.stat-icon-wrapper {
+    -fx-pref-width: 48px;
+    -fx-pref-height: 48px;
+    -fx-background-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Form Styles
+   -------------------------------------------------------------------------- */
+.form-field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 4px 0;
+}
+
+.form-help-text {
+    -fx-font-size: 11px;
+}
+
+.error-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #D32F2F;
+}
+
+/* --------------------------------------------------------------------------
+   Table & Grid
+   -------------------------------------------------------------------------- */
+.table-view {
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+.table-view .column-header {
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 8px;
+}
+
+.table-row-cell {
+    -fx-cell-size: 40px;
+}

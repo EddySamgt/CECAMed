@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane prefHeight="650.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cecamed.ui.controller.PatientFormDialogController">
+
+    <!-- Header -->
+    <top>
+        <VBox spacing="6.0" style="-fx-padding: 20 24 16 24; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
+            <HBox alignment="CENTER_LEFT" spacing="12.0">
+                <FontIcon iconColor="#D32F2F" iconLiteral="feather-user-plus" iconSize="24"/>
+                <VBox>
+                    <Label fx:id="dialogTitleLabel" styleClass="page-title" style="-fx-font-size: 18px;" text="Registrar Nuevo Paciente"/>
+                    <Label styleClass="page-subtitle" style="-fx-font-size: 12px;" text="Complete los datos del paciente para generar su expediente cl?nico"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Center Scrollable Form -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <content>
+                <VBox spacing="20.0" style="-fx-padding: 20 24 20 24;">
+
+                    <!-- Seccion 1: Datos Personales -->
+                    <VBox spacing="12.0" styleClass="cecamed-card">
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <FontIcon iconColor="#0288D1" iconLiteral="feather-user" iconSize="16"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="1. Datos Personales"/>
+                        </HBox>
+                        <Separator/>
+
+                        <GridPane hgap="14.0" vgap="12.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
+                            </columnConstraints>
+
+                            <!-- DNI -->
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label styleClass="form-field-label" text="Identificaci?n / DNI *"/>
+                                <TextField fx:id="dniField" promptText="ej. 0801199512345"/>
+                            </VBox>
+
+                            <!-- Tipo de Sangre -->
+                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label styleClass="form-field-label" text="Tipo de Sangre"/>
+                                <ComboBox fx:id="bloodTypeComboBox" maxWidth="Infinity" promptText="Seleccionar..."/>
+                            </VBox>
+
+                            <!-- Nombres -->
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label styleClass="form-field-label" text="Nombres *"/>
+                                <TextField fx:id="firstNameField" promptText="ej. Juan Carlos"/>
+                            </VBox>
+
+                            <!-- Apellidos -->
+                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label styleClass="form-field-label" text="Apellidos *"/>
+                                <TextField fx:id="lastNameField" promptText="ej. P?rez G?mez"/>
+                            </VBox>
+
+                            <!-- Fecha Nacimiento -->
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                <Label styleClass="form-field-label" text="Fecha de Nacimiento *"/>
+                                <DatePicker fx:id="birthDatePicker" maxWidth="Infinity" promptText="DD/MM/AAAA"/>
+                            </VBox>
+
+                            <!-- G?nero -->
+                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <Label styleClass="form-field-label" text="G?nero / Sexo *"/>
+                                <ComboBox fx:id="genderComboBox" maxWidth="Infinity" promptText="Seleccionar g?nero"/>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Seccion 2: Contacto y Ubicacion -->
+                    <VBox spacing="12.0" styleClass="cecamed-card">
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <FontIcon iconColor="#0288D1" iconLiteral="feather-phone" iconSize="16"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="2. Informaci?n de Contacto"/>
+                        </HBox>
+                        <Separator/>
+
+                        <GridPane hgap="14.0" vgap="12.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
+                            </columnConstraints>
+
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label styleClass="form-field-label" text="Tel?fono Principal"/>
+                                <TextField fx:id="phoneField" promptText="ej. +504 9876-5432"/>
+                            </VBox>
+
+                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label styleClass="form-field-label" text="Correo Electr?nico"/>
+                                <TextField fx:id="emailField" promptText="ej. paciente@email.com"/>
+                            </VBox>
+
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                <Label styleClass="form-field-label" text="Direcci?n de Residencia"/>
+                                <TextArea fx:id="addressArea" prefRowCount="2" promptText="Colonia, calle, n?mero de casa, ciudad"/>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Seccion 3: Tutor / Contacto de Emergencia -->
+                    <VBox spacing="12.0" styleClass="cecamed-card">
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <FontIcon iconColor="#0288D1" iconLiteral="feather-shield" iconSize="16"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="3. Contacto de Emergencia / Tutor"/>
+                        </HBox>
+                        <Separator/>
+
+                        <GridPane hgap="14.0" vgap="12.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="38.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="31.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="31.0"/>
+                            </columnConstraints>
+
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label styleClass="form-field-label" text="Nombre Completo"/>
+                                <TextField fx:id="emergencyNameField" promptText="ej. Mar?a Morales"/>
+                            </VBox>
+
+                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label styleClass="form-field-label" text="Parentesco / Relaci?n"/>
+                                <TextField fx:id="emergencyRelationshipField" promptText="ej. Madre, C?nyuge"/>
+                            </VBox>
+
+                            <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <Label styleClass="form-field-label" text="Tel?fono Emergencia"/>
+                                <TextField fx:id="emergencyPhoneField" promptText="ej. +504 9876-0000"/>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Seccion 4: Notas adicionales -->
+                    <VBox spacing="8.0" styleClass="cecamed-card">
+                        <Label styleClass="form-field-label" text="Observaciones / Notas Administrativas"/>
+                        <TextArea fx:id="notesArea" prefRowCount="2" promptText="Informaci?n adicional relevante..."/>
+                    </VBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <!-- Bottom Actions -->
+    <bottom>
+        <VBox spacing="8.0" style="-fx-padding: 14 24 16 24; -fx-border-color: #E2E8F0; -fx-border-width: 1 0 0 0;">
+            <Label fx:id="errorLabel" styleClass="error-label" text="Error" visible="false" wrapText="true"/>
+            <HBox alignment="CENTER_RIGHT" spacing="12.0">
+                <ProgressIndicator fx:id="progressIndicator" maxHeight="20.0" maxWidth="20.0" visible="false"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button onAction="#handleCancel" styleClass="ghost-button" text="Cancelar"/>
+                <Button fx:id="saveButton" defaultButton="true" onAction="#handleSave" styleClass="primary-button" text="Guardar Paciente">
+                    <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="feather-check" iconSize="16"/>
+                    </graphic>
+                </Button>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>

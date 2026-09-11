@@ -19,6 +19,8 @@ public interface AppointmentService {
 
     AppointmentResponseDto completeAppointment(Long appointmentId);
 
+    AppointmentResponseDto updateAppointmentStatus(Long appointmentId, com.cecamed.core.model.appointment.enums.AppointmentStatus status);
+
     AppointmentResponseDto getAppointmentById(Long id);
 
     List<AppointmentResponseDto> getAppointmentsByPatient(Long patientId);

@@ -177,6 +177,17 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    @Transactional
+    public AppointmentResponseDto updateAppointmentStatus(Long appointmentId, AppointmentStatus status) {
+        log.info("Actualizando estado de la cita ID: {} a {}", appointmentId, status);
+        Appointment appointment = appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Cita", "id", appointmentId));
+        appointment.setStatus(status);
+        Appointment updated = appointmentRepository.save(appointment);
+        return appointmentMapper.toResponseDto(updated);
+    }
+
+    @Override
     public AppointmentResponseDto getAppointmentById(Long id) {
         return appointmentRepository.findById(id)
                 .map(appointmentMapper::toResponseDto)

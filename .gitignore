@@ -71,10 +71,8 @@ tokens/
 
 # Local Clinical Storage / Uploaded Patient Documents (File System Storage)
 uploads/
-storage/
 attachments/
 **/uploads/
-**/storage/
 **/attachments/
 
 # Logs & Temporary Files

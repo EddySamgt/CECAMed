@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .root {
-    -fx-font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+    -fx-font-family: "System";
     -fx-font-size: 13px;
 }
 

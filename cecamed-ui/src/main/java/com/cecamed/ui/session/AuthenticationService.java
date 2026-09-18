@@ -15,7 +15,7 @@ public class AuthenticationService {
     private static final Map<String, AuthUser> PRESET_ACCOUNTS = new HashMap<>();
 
     static {
-        PRESET_ACCOUNTS.put("medico", new AuthUser("medico", "medico123", "Dr. Carlos Eduardo Morales", UserRole.MEDICO));
+        PRESET_ACCOUNTS.put("medico", new AuthUser("medico", "medico123", "Dr. Angel Anibal Mazariegos Pinales", UserRole.MEDICO));
         PRESET_ACCOUNTS.put("admin", new AuthUser("admin", "admin123", "Dra. Ana Lucía Gómez", UserRole.MEDICO));
         PRESET_ACCOUNTS.put("recepcion", new AuthUser("recepcion", "recepcion123", "Licda. Sofía Méndez", UserRole.RECEPCION));
     }

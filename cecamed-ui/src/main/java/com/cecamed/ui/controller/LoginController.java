@@ -78,13 +78,13 @@ public class LoginController implements Initializable {
             passwordVisibleField.setManaged(true);
             passwordField.setVisible(false);
             passwordField.setManaged(false);
-            togglePasswordIcon.setIconLiteral("feather-eye-off");
+            togglePasswordIcon.setIconLiteral("fth-eye-off");
         } else {
             passwordVisibleField.setVisible(false);
             passwordVisibleField.setManaged(false);
             passwordField.setVisible(true);
             passwordField.setManaged(true);
-            togglePasswordIcon.setIconLiteral("feather-eye");
+            togglePasswordIcon.setIconLiteral("fth-eye");
         }
     }
 
@@ -157,7 +157,7 @@ public class LoginController implements Initializable {
 
     private void updateThemeIcon() {
         if (toggleThemeIcon != null) {
-            toggleThemeIcon.setIconLiteral(themeManager.isDarkMode() ? "feather-sun" : "feather-moon");
+            toggleThemeIcon.setIconLiteral(themeManager.isDarkMode() ? "fth-sun" : "fth-moon");
         }
     }
 

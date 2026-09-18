@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: cecamed
+      POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME:-cecamed}
+      POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:?Configure SPRING_DATASOURCE_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d cecamed"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:

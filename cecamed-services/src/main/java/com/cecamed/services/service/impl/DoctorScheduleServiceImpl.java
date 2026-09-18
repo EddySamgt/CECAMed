@@ -41,8 +41,14 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     public DoctorScheduleDto saveSchedule(DoctorScheduleDto dto) {
         log.info("Guardando horario de atención para el día: {}", dto.getDayOfWeek());
 
-        if (dto.getStartTime().isAfter(dto.getEndTime())) {
-            throw new BusinessRuleException("La hora de inicio no puede ser posterior a la hora de fin");
+        if (dto.getStartTime() == null || dto.getEndTime() == null
+                || !dto.getStartTime().isBefore(dto.getEndTime())) {
+            throw new BusinessRuleException("El horario debe tener inicio y fin y una duración positiva");
+        }
+
+        if (dto.getSlotDurationMinutes() == null || dto.getSlotDurationMinutes() < 5
+                || dto.getSlotDurationMinutes() > 240) {
+            throw new BusinessRuleException("La duración del turno debe estar entre 5 y 240 minutos");
         }
 
         DoctorSchedule schedule = doctorScheduleRepository.findByDayOfWeekAndIsActiveTrue(dto.getDayOfWeek())
@@ -76,8 +82,9 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     public ScheduleBlockResponseDto createScheduleBlock(ScheduleBlockRequestDto dto) {
         log.info("Creando bloqueo de agenda desde {} hasta {}", dto.getStartDateTime(), dto.getEndDateTime());
 
-        if (dto.getStartDateTime().isAfter(dto.getEndDateTime())) {
-            throw new BusinessRuleException("La fecha de inicio del bloqueo no puede ser posterior a la fecha de fin");
+        if (dto.getStartDateTime() == null || dto.getEndDateTime() == null
+                || !dto.getStartDateTime().isBefore(dto.getEndDateTime())) {
+            throw new BusinessRuleException("El bloqueo debe tener inicio y fin y una duración positiva");
         }
 
         ScheduleBlock block = appointmentMapper.toEntity(dto);
@@ -97,7 +104,7 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
 
     @Override
     public List<ScheduleBlockResponseDto> getBlocksBetween(LocalDateTime start, LocalDateTime end) {
-        return scheduleBlockRepository.findAllByStartDateTimeGreaterThanEqualAndEndDateTimeLessThanEqualOrderByStartDateTimeAsc(start, end).stream()
+        return scheduleBlockRepository.findOverlappingBlocks(start, end).stream()
                 .map(appointmentMapper::toResponseDto)
                 .toList();
     }

@@ -83,7 +83,7 @@ public class MainLayoutController implements Initializable {
             userFullNameLabel.setText(userSession.getFullName());
             userRoleLabel.setText(userSession.getRole().getDisplayName());
         } else {
-            userFullNameLabel.setText("Dr. Carlos Eduardo Morales");
+            userFullNameLabel.setText("Dr. Angel Anibal Mazariegos Pinales");
             userRoleLabel.setText("Médico Especialista");
         }
     }
@@ -173,7 +173,7 @@ public class MainLayoutController implements Initializable {
 
     private void updateThemeIcon() {
         if (toggleThemeIcon != null) {
-            toggleThemeIcon.setIconLiteral(themeManager.isDarkMode() ? "feather-sun" : "feather-moon");
+            toggleThemeIcon.setIconLiteral(themeManager.isDarkMode() ? "fth-sun" : "fth-moon");
         }
     }
 }

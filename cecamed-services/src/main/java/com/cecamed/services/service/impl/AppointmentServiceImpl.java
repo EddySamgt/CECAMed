@@ -234,11 +234,15 @@ public class AppointmentServiceImpl implements AppointmentService {
         DoctorSchedule schedule = scheduleOpt.get();
         List<AvailableSlotDto> slots = new ArrayList<>();
 
-        LocalTime current = schedule.getStartTime();
+        LocalDateTime current = LocalDateTime.of(date, schedule.getStartTime());
+        LocalDateTime scheduleEnd = LocalDateTime.of(date, schedule.getEndTime());
         int slotDuration = schedule.getSlotDurationMinutes();
+        if (slotDuration <= 0) {
+            throw new IllegalStateException("La duración de turno debe ser positiva");
+        }
 
-        while (!current.plusMinutes(slotDuration).isAfter(schedule.getEndTime())) {
-            LocalDateTime slotStart = LocalDateTime.of(date, current);
+        while (!current.plusMinutes(slotDuration).isAfter(scheduleEnd)) {
+            LocalDateTime slotStart = current;
             LocalDateTime slotEnd = slotStart.plusMinutes(slotDuration);
 
             boolean isBlocked = scheduleBlockRepository.isTimeRangeBlocked(slotStart, slotEnd);

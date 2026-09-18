@@ -31,7 +31,7 @@
     <HBox alignment="CENTER_LEFT" spacing="16.0">
         <Button onAction="#handleBackToPatients" styleClass="ghost-button" text="Volver a Directorio">
             <graphic>
-                <FontIcon iconLiteral="feather-arrow-left" iconSize="16"/>
+                <FontIcon iconLiteral="fth-arrow-left" iconSize="16"/>
             </graphic>
         </Button>
 
@@ -46,7 +46,7 @@
     <!-- Patient Banner Card -->
     <VBox spacing="12.0" styleClass="cecamed-card" style="-fx-border-color: #0288D1; -fx-border-width: 0 0 0 4;">
         <HBox alignment="CENTER_LEFT" spacing="16.0">
-            <FontIcon iconColor="#0288D1" iconLiteral="feather-user" iconSize="36"/>
+            <FontIcon iconColor="#0288D1" iconLiteral="fth-user" iconSize="36"/>
 
             <VBox spacing="2.0">
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
@@ -64,7 +64,7 @@
 
             <!-- High Alert Box for Allergies -->
             <HBox alignment="CENTER" spacing="8.0" style="-fx-background-color: #FEF2F2; -fx-border-color: #FCA5A5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 14 8 14;">
-                <FontIcon iconColor="#DC2626" iconLiteral="feather-alert-triangle" iconSize="18"/>
+                <FontIcon iconColor="#DC2626" iconLiteral="fth-alert-triangle" iconSize="18"/>
                 <VBox>
                     <Label style="-fx-font-weight: bold; -fx-text-fill: #991B1B; -fx-font-size: 11px;" text="ALERGIAS REPORTADAS"/>
                     <Label fx:id="allergiesSummaryLabel" style="-fx-text-fill: #B91C1C; -fx-font-size: 12px;" text="Ninguna"/>
@@ -76,10 +76,10 @@
     <!-- Tabs Container -->
     <TabPane fx:id="recordTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
 
-        <!-- TAB 1: Antecedentes Cl?nicos -->
-        <Tab text="Antecedentes y Ficha M?dica">
+        <!-- TAB 1: Antecedentes Clínicos -->
+        <Tab text="Antecedentes y Ficha Médica">
             <graphic>
-                <FontIcon iconLiteral="feather-file-text" iconSize="15"/>
+                <FontIcon iconLiteral="fth-file-text" iconSize="15"/>
             </graphic>
             <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
                 <VBox spacing="16.0" style="-fx-padding: 16 0 16 0;">
@@ -92,31 +92,31 @@
                         <!-- Alergias -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
                             <HBox alignment="CENTER_LEFT" spacing="6.0">
-                                <FontIcon iconColor="#D32F2F" iconLiteral="feather-alert-circle" iconSize="15"/>
+                                <FontIcon iconColor="#D32F2F" iconLiteral="fth-alert-circle" iconSize="15"/>
                                 <Label styleClass="form-field-label" style="-fx-text-fill: #D32F2F;" text="Alergias Conocidas (Medicamentos, Alimentos, etc.)"/>
                             </HBox>
                             <TextArea fx:id="allergiesArea" prefRowCount="2" promptText="Indicar alergias o 'Ninguna conocida'"/>
                         </VBox>
 
-                        <!-- Medicaci?n Habitual -->
+                        <!-- Medicación Habitual -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
                             <HBox alignment="CENTER_LEFT" spacing="6.0">
-                                <FontIcon iconColor="#0288D1" iconLiteral="feather-activity" iconSize="15"/>
-                                <Label styleClass="form-field-label" text="Medicaci?n Actual / Uso Continuo"/>
+                                <FontIcon iconColor="#0288D1" iconLiteral="fth-activity" iconSize="15"/>
+                                <Label styleClass="form-field-label" text="Medicación Actual / Uso Continuo"/>
                             </HBox>
-                            <TextArea fx:id="currentMedicationsArea" prefRowCount="2" promptText="F?rmacos actuales, dosis y frecuencia"/>
+                            <TextArea fx:id="currentMedicationsArea" prefRowCount="2" promptText="Fármacos actuales, dosis y frecuencia"/>
                         </VBox>
 
-                        <!-- Antecedentes Patol?gicos -->
+                        <!-- Antecedentes Patológicos -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                            <Label styleClass="form-field-label" text="Antecedentes Patol?gicos Personales"/>
-                            <TextArea fx:id="pathologicalHistoryArea" prefRowCount="3" promptText="Enfermedades cr?nicas: HTA, Diabetes, Asma..."/>
+                            <Label styleClass="form-field-label" text="Antecedentes Patológicos Personales"/>
+                            <TextArea fx:id="pathologicalHistoryArea" prefRowCount="3" promptText="Enfermedades crónicas: HTA, Diabetes, Asma..."/>
                         </VBox>
 
-                        <!-- Antecedentes No Patol?gicos -->
+                        <!-- Antecedentes No Patológicos -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <Label styleClass="form-field-label" text="Antecedentes No Patol?gicos (Estilo de Vida)"/>
-                            <TextArea fx:id="nonPathologicalHistoryArea" prefRowCount="3" promptText="Horas de sue?o, agua, tabaquismo, alcohol, actividad f?sica..."/>
+                            <Label styleClass="form-field-label" text="Antecedentes No Patológicos (Estilo de Vida)"/>
+                            <TextArea fx:id="nonPathologicalHistoryArea" prefRowCount="3" promptText="Horas de sueño, agua, tabaquismo, alcohol, actividad física..."/>
                         </VBox>
 
                         <!-- Antecedentes Familiares -->
@@ -125,15 +125,15 @@
                             <TextArea fx:id="familyHistoryArea" prefRowCount="3" promptText="Enfermedades en padres, abuelos o hermanos..."/>
                         </VBox>
 
-                        <!-- Antecedentes Quir?rgicos -->
+                        <!-- Antecedentes Quirúrgicos -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <Label styleClass="form-field-label" text="Antecedentes Quir?rgicos y Hospitalizaciones"/>
-                            <TextArea fx:id="surgicalHistoryArea" prefRowCount="3" promptText="Cirug?as previas, traumatismos, transfusiones..."/>
+                            <Label styleClass="form-field-label" text="Antecedentes Quirúrgicos y Hospitalizaciones"/>
+                            <TextArea fx:id="surgicalHistoryArea" prefRowCount="3" promptText="Cirugías previas, traumatismos, transfusiones..."/>
                         </VBox>
 
                         <!-- Observaciones Generales -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
-                            <Label styleClass="form-field-label" text="Observaciones Cl?nicas Generales"/>
+                            <Label styleClass="form-field-label" text="Observaciones Clínicas Generales"/>
                             <TextArea fx:id="generalObservationsArea" prefRowCount="2" promptText="Notas adicionales del expediente..."/>
                         </VBox>
                     </GridPane>
@@ -141,7 +141,7 @@
                     <HBox alignment="CENTER_RIGHT" spacing="12.0">
                         <Button fx:id="saveRecordButton" onAction="#handleSaveMedicalRecord" styleClass="primary-button" text="Guardar Antecedentes">
                             <graphic>
-                                <FontIcon iconColor="WHITE" iconLiteral="feather-save" iconSize="16"/>
+                                <FontIcon iconColor="WHITE" iconLiteral="fth-save" iconSize="16"/>
                             </graphic>
                         </Button>
                     </HBox>
@@ -149,10 +149,10 @@
             </ScrollPane>
         </Tab>
 
-        <!-- TAB 2: Historial de Consultas & Somatometr?a -->
-        <Tab text="Consultas &amp; Somatometr?a">
+        <!-- TAB 2: Historial de Consultas & Somatometría -->
+        <Tab text="Consultas &amp; Somatometría">
             <graphic>
-                <FontIcon iconLiteral="feather-clipboard" iconSize="15"/>
+                <FontIcon iconLiteral="fth-clipboard" iconSize="15"/>
             </graphic>
             <SplitPane dividerPositions="0.45" style="-fx-background-color: transparent;">
                 <!-- Left Table -->
@@ -162,7 +162,7 @@
                         <columns>
                             <TableColumn fx:id="colConsultationDate" prefWidth="120.0" text="Fecha/Hora"/>
                             <TableColumn fx:id="colConsultationReason" prefWidth="140.0" text="Motivo"/>
-                            <TableColumn fx:id="colConsultationDiagnosis" prefWidth="160.0" text="Diagn?stico"/>
+                            <TableColumn fx:id="colConsultationDiagnosis" prefWidth="160.0" text="Diagnóstico"/>
                             <TableColumn fx:id="colConsultationIcd10" prefWidth="60.0" text="CIE-10"/>
                         </columns>
                         <columnResizePolicy>
@@ -175,9 +175,9 @@
                 <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
                     <VBox fx:id="consultationDetailPane" spacing="14.0" styleClass="cecamed-card" style="-fx-margin: 12 0 12 12;">
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
-                            <FontIcon iconColor="#D32F2F" iconLiteral="feather-file-text" iconSize="20"/>
+                            <FontIcon iconColor="#D32F2F" iconLiteral="fth-file-text" iconSize="20"/>
                             <VBox>
-                                <Label style="-fx-font-weight: bold; -fx-font-size: 15px;" text="Detalle de Consulta M?dica"/>
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 15px;" text="Detalle de Consulta Médica"/>
                                 <Label fx:id="detailDateLabel" styleClass="page-subtitle" text="Fecha: --"/>
                             </VBox>
                         </HBox>
@@ -185,7 +185,7 @@
 
                         <!-- Vital Signs Card Grid -->
                         <VBox spacing="8.0" style="-fx-background-color: #F8FAFC; -fx-padding: 12; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;">
-                            <Label style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #0288D1;" text="SOMATOMETR?A Y SIGNOS VITALES"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #0288D1;" text="SOMATOMETRÍA Y SIGNOS VITALES"/>
                             <GridPane hgap="12.0" vgap="8.0">
                                 <columnConstraints>
                                     <ColumnConstraints percentWidth="25.0"/>
@@ -195,7 +195,7 @@
                                 </columnConstraints>
 
                                 <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                    <Label styleClass="form-help-text" text="Presi?n Arterial:"/>
+                                    <Label styleClass="form-help-text" text="Presión Arterial:"/>
                                     <Label fx:id="detailBloodPressureLabel" style="-fx-font-weight: bold;" text="--/--"/>
                                 </VBox>
                                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
@@ -224,7 +224,7 @@
                                     <Label fx:id="detailBmiLabel" style="-fx-font-weight: bold; -fx-text-fill: #D32F2F;" text="--"/>
                                 </VBox>
                                 <VBox GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                    <Label styleClass="form-help-text" text="Saturaci?n SpO2:"/>
+                                    <Label styleClass="form-help-text" text="Saturación SpO2:"/>
                                     <Label fx:id="detailSpo2Label" style="-fx-font-weight: bold;" text="--"/>
                                 </VBox>
                             </GridPane>
@@ -236,17 +236,17 @@
                         </VBox>
 
                         <VBox spacing="4.0">
-                            <Label styleClass="form-field-label" text="Examen F?sico:"/>
+                            <Label styleClass="form-field-label" text="Examen Físico:"/>
                             <Label fx:id="detailPhysicalExamLabel" style="-fx-padding: 4 0 0 0;" text="-" wrapText="true"/>
                         </VBox>
 
                         <VBox spacing="4.0">
-                            <Label styleClass="form-field-label" text="Diagn?stico Cl?nico:"/>
+                            <Label styleClass="form-field-label" text="Diagnóstico Clínico:"/>
                             <Label fx:id="detailDiagnosisLabel" style="-fx-padding: 4 0 0 0; -fx-font-weight: bold;" text="-" wrapText="true"/>
                         </VBox>
 
                         <VBox spacing="4.0">
-                            <Label styleClass="form-field-label" text="Plan de Tratamiento y Prescripci?n:"/>
+                            <Label styleClass="form-field-label" text="Plan de Tratamiento y Prescripción:"/>
                             <Label fx:id="detailTreatmentPlanLabel" style="-fx-padding: 4 0 0 0;" text="-" wrapText="true"/>
                         </VBox>
                     </VBox>
@@ -255,16 +255,16 @@
         </Tab>
 
         <!-- TAB 3: Registrar Nueva Consulta -->
-        <Tab fx:id="tabNewConsultation" text="Nueva Consulta M?dica">
+        <Tab fx:id="tabNewConsultation" text="Nueva Consulta Médica">
             <graphic>
-                <FontIcon iconLiteral="feather-plus-circle" iconSize="15"/>
+                <FontIcon iconLiteral="fth-plus-circle" iconSize="15"/>
             </graphic>
             <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
                 <VBox spacing="16.0" style="-fx-padding: 16 0 16 0;">
                     <!-- Motivo y Datos Generales -->
                     <VBox spacing="12.0" styleClass="cecamed-card">
                         <HBox alignment="CENTER_LEFT" spacing="8.0">
-                            <FontIcon iconColor="#0288D1" iconLiteral="feather-edit" iconSize="16"/>
+                            <FontIcon iconColor="#0288D1" iconLiteral="fth-edit" iconSize="16"/>
                             <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="1. Datos de la Consulta"/>
                         </HBox>
                         <Separator/>
@@ -282,21 +282,21 @@
 
                             <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                 <Label styleClass="form-field-label" text="Motivo Principal de Consulta *"/>
-                                <TextField fx:id="newConsultationReasonField" promptText="ej. Control rutinario de hipertensi?n, fiebre de 3 d?as..."/>
+                                <TextField fx:id="newConsultationReasonField" promptText="ej. Control rutinario de hipertensión, fiebre de 3 días..."/>
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                                <Label styleClass="form-field-label" text="S?ntomas y Evoluci?n del Cuadro"/>
-                                <TextArea fx:id="newConsultationSymptomsArea" prefRowCount="2" promptText="Descripci?n detallada de s?ntomas referidos por el paciente..."/>
+                                <Label styleClass="form-field-label" text="Síntomas y Evolución del Cuadro"/>
+                                <TextArea fx:id="newConsultationSymptomsArea" prefRowCount="2" promptText="Descripción detallada de síntomas referidos por el paciente..."/>
                             </VBox>
                         </GridPane>
                     </VBox>
 
-                    <!-- Somatometr?a y Signos Vitales -->
+                    <!-- Somatometría y Signos Vitales -->
                     <VBox spacing="12.0" styleClass="cecamed-card">
                         <HBox alignment="CENTER_LEFT" spacing="8.0">
-                            <FontIcon iconColor="#D32F2F" iconLiteral="feather-activity" iconSize="16"/>
-                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="2. Somatometr?a y Signos Vitales"/>
+                            <FontIcon iconColor="#D32F2F" iconLiteral="fth-activity" iconSize="16"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="2. Somatometría y Signos Vitales"/>
                         </HBox>
                         <Separator/>
 
@@ -309,17 +309,17 @@
                             </columnConstraints>
 
                             <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Presi?n Sist?lica (mmHg)"/>
+                                <Label styleClass="form-field-label" text="Presión Sistólica (mmHg)"/>
                                 <TextField fx:id="vitalSystolicField" promptText="ej. 120"/>
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Presi?n Diast?lica (mmHg)"/>
+                                <Label styleClass="form-field-label" text="Presión Diastólica (mmHg)"/>
                                 <TextField fx:id="vitalDiastolicField" promptText="ej. 80"/>
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Frecuencia Card?aca (bpm)"/>
+                                <Label styleClass="form-field-label" text="Frecuencia Cardíaca (bpm)"/>
                                 <TextField fx:id="vitalHeartRateField" promptText="ej. 75"/>
                             </VBox>
 
@@ -329,7 +329,7 @@
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                <Label styleClass="form-field-label" text="Temperatura (?C)"/>
+                                <Label styleClass="form-field-label" text="Temperatura (°C)"/>
                                 <TextField fx:id="vitalTempField" promptText="ej. 36.5"/>
                             </VBox>
 
@@ -344,25 +344,25 @@
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                <Label styleClass="form-field-label" text="Saturaci?n O2 (%)"/>
+                                <Label styleClass="form-field-label" text="Saturación O2 (%)"/>
                                 <TextField fx:id="vitalSpo2Field" promptText="ej. 98"/>
                             </VBox>
                         </GridPane>
-                        <Label styleClass="form-help-text" text="Nota: El IMC se calcular? autom?ticamente en el servidor al procesar peso y talla."/>
+                        <Label styleClass="form-help-text" text="Nota: El IMC se calculará automáticamente en el servidor al procesar peso y talla."/>
                     </VBox>
 
-                    <!-- Examen F?sico, Diagn?stico y Plan -->
+                    <!-- Examen Físico, Diagnóstico y Plan -->
                     <VBox spacing="12.0" styleClass="cecamed-card">
                         <HBox alignment="CENTER_LEFT" spacing="8.0">
-                            <FontIcon iconColor="#0288D1" iconLiteral="feather-check-circle" iconSize="16"/>
-                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="3. Diagn?stico y Tratamiento"/>
+                            <FontIcon iconColor="#0288D1" iconLiteral="fth-check-circle" iconSize="16"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="3. Diagnóstico y Tratamiento"/>
                         </HBox>
                         <Separator/>
 
                         <VBox spacing="10.0">
                             <VBox spacing="4.0">
-                                <Label styleClass="form-field-label" text="Examen F?sico Dirigido"/>
-                                <TextArea fx:id="newConsultationPhysicalExamArea" prefRowCount="2" promptText="Hallazgos del examen f?sico..."/>
+                                <Label styleClass="form-field-label" text="Examen Físico Dirigido"/>
+                                <TextArea fx:id="newConsultationPhysicalExamArea" prefRowCount="2" promptText="Hallazgos del examen físico..."/>
                             </VBox>
 
                             <GridPane hgap="14.0">
@@ -371,22 +371,22 @@
                                     <ColumnConstraints percentWidth="25.0"/>
                                 </columnConstraints>
                                 <VBox spacing="4.0" GridPane.columnIndex="0">
-                                    <Label styleClass="form-field-label" text="Diagn?stico Cl?nico *"/>
-                                    <TextArea fx:id="newConsultationDiagnosisArea" prefRowCount="2" promptText="Diagn?stico principal o presuntivo..."/>
+                                    <Label styleClass="form-field-label" text="Diagnóstico Clínico *"/>
+                                    <TextArea fx:id="newConsultationDiagnosisArea" prefRowCount="2" promptText="Diagnóstico principal o presuntivo..."/>
                                 </VBox>
                                 <VBox spacing="4.0" GridPane.columnIndex="1">
-                                    <Label styleClass="form-field-label" text="C?digo CIE-10"/>
+                                    <Label styleClass="form-field-label" text="Código CIE-10"/>
                                     <TextField fx:id="newConsultationIcd10Field" promptText="ej. I10"/>
                                 </VBox>
                             </GridPane>
 
                             <VBox spacing="4.0">
-                                <Label styleClass="form-field-label" text="Plan de Tratamiento / Receta M?dica"/>
-                                <TextArea fx:id="newConsultationTreatmentArea" prefRowCount="3" promptText="Indicaciones farmacol?gicas, estilo de vida, estudios solicitados..."/>
+                                <Label styleClass="form-field-label" text="Plan de Tratamiento / Receta Médica"/>
+                                <TextArea fx:id="newConsultationTreatmentArea" prefRowCount="3" promptText="Indicaciones farmacológicas, estilo de vida, estudios solicitados..."/>
                             </VBox>
 
                             <VBox spacing="4.0">
-                                <Label styleClass="form-field-label" text="Notas Privadas del M?dico"/>
+                                <Label styleClass="form-field-label" text="Notas Privadas del Médico"/>
                                 <TextArea fx:id="newConsultationPrivateNotesArea" prefRowCount="2" promptText="Observaciones confidenciales de seguimiento..."/>
                             </VBox>
                         </VBox>
@@ -394,9 +394,9 @@
 
                     <!-- Submit Consultation Button -->
                     <HBox alignment="CENTER_RIGHT" spacing="12.0">
-                        <Button fx:id="saveConsultationButton" onAction="#handleSaveNewConsultation" styleClass="primary-button" text="Registrar Consulta M?dica">
+                        <Button fx:id="saveConsultationButton" onAction="#handleSaveNewConsultation" styleClass="primary-button" text="Registrar Consulta Médica">
                             <graphic>
-                                <FontIcon iconColor="WHITE" iconLiteral="feather-check" iconSize="16"/>
+                                <FontIcon iconColor="WHITE" iconLiteral="fth-check" iconSize="16"/>
                             </graphic>
                         </Button>
                     </HBox>
@@ -404,10 +404,10 @@
             </ScrollPane>
         </Tab>
 
-        <!-- TAB 4: Historial de Citas M?dicas -->
+        <!-- TAB 4: Historial de Citas Médicas -->
         <Tab text="Historial de Citas">
             <graphic>
-                <FontIcon iconLiteral="feather-calendar" iconSize="15"/>
+                <FontIcon iconLiteral="fth-calendar" iconSize="15"/>
             </graphic>
             <VBox spacing="12.0" style="-fx-padding: 16 0 16 0;">
                 <TableView fx:id="patientAppointmentsTable" VBox.vgrow="ALWAYS">

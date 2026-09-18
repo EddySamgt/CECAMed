@@ -46,8 +46,12 @@ public class GoogleCalendarAvailabilityService {
         DoctorSchedule schedule = scheduleOpt.get();
         List<TimeSlotDto> result = new ArrayList<>();
 
-        LocalTime current = schedule.getStartTime();
+        LocalDateTime current = LocalDateTime.of(date, schedule.getStartTime());
+        LocalDateTime scheduleEnd = LocalDateTime.of(date, schedule.getEndTime());
         int slotDuration = schedule.getSlotDurationMinutes();
+        if (slotDuration <= 0) {
+            throw new IllegalStateException("La duración de turno debe ser positiva");
+        }
 
         LocalDateTime dayStart = LocalDateTime.of(date, schedule.getStartTime());
         LocalDateTime dayEnd = LocalDateTime.of(date, schedule.getEndTime());
@@ -62,8 +66,8 @@ public class GoogleCalendarAvailabilityService {
             }
         }
 
-        while (!current.plusMinutes(slotDuration).isAfter(schedule.getEndTime())) {
-            LocalDateTime slotStart = LocalDateTime.of(date, current);
+        while (!current.plusMinutes(slotDuration).isAfter(scheduleEnd)) {
+            LocalDateTime slotStart = current;
             LocalDateTime slotEnd = slotStart.plusMinutes(slotDuration);
 
             boolean isBlocked = scheduleBlockRepository.isTimeRangeBlocked(slotStart, slotEnd);

@@ -28,10 +28,10 @@
     <top>
         <VBox spacing="6.0" style="-fx-padding: 20 24 16 24; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
             <HBox alignment="CENTER_LEFT" spacing="12.0">
-                <FontIcon iconColor="#D32F2F" iconLiteral="feather-user-plus" iconSize="24"/>
+                <FontIcon iconColor="#D32F2F" iconLiteral="fth-user-plus" iconSize="24"/>
                 <VBox>
                     <Label fx:id="dialogTitleLabel" styleClass="page-title" style="-fx-font-size: 18px;" text="Registrar Nuevo Paciente"/>
-                    <Label styleClass="page-subtitle" style="-fx-font-size: 12px;" text="Complete los datos del paciente para generar su expediente cl?nico"/>
+                    <Label styleClass="page-subtitle" style="-fx-font-size: 12px;" text="Complete los datos del paciente para generar su expediente clínico"/>
                 </VBox>
             </HBox>
         </VBox>
@@ -46,7 +46,7 @@
                     <!-- Seccion 1: Datos Personales -->
                     <VBox spacing="12.0" styleClass="cecamed-card">
                         <HBox alignment="CENTER_LEFT" spacing="8.0">
-                            <FontIcon iconColor="#0288D1" iconLiteral="feather-user" iconSize="16"/>
+                            <FontIcon iconColor="#0288D1" iconLiteral="fth-user" iconSize="16"/>
                             <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="1. Datos Personales"/>
                         </HBox>
                         <Separator/>
@@ -59,7 +59,7 @@
 
                             <!-- DNI -->
                             <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Identificaci?n / DNI *"/>
+                                <Label styleClass="form-field-label" text="Identificación / DNI *"/>
                                 <TextField fx:id="dniField" promptText="ej. 0801199512345"/>
                             </VBox>
 
@@ -78,7 +78,7 @@
                             <!-- Apellidos -->
                             <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                 <Label styleClass="form-field-label" text="Apellidos *"/>
-                                <TextField fx:id="lastNameField" promptText="ej. P?rez G?mez"/>
+                                <TextField fx:id="lastNameField" promptText="ej. Pérez Gómez"/>
                             </VBox>
 
                             <!-- Fecha Nacimiento -->
@@ -87,10 +87,10 @@
                                 <DatePicker fx:id="birthDatePicker" maxWidth="Infinity" promptText="DD/MM/AAAA"/>
                             </VBox>
 
-                            <!-- G?nero -->
+                            <!-- Género -->
                             <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                <Label styleClass="form-field-label" text="G?nero / Sexo *"/>
-                                <ComboBox fx:id="genderComboBox" maxWidth="Infinity" promptText="Seleccionar g?nero"/>
+                                <Label styleClass="form-field-label" text="Género / Sexo *"/>
+                                <ComboBox fx:id="genderComboBox" maxWidth="Infinity" promptText="Seleccionar género"/>
                             </VBox>
                         </GridPane>
                     </VBox>
@@ -98,8 +98,8 @@
                     <!-- Seccion 2: Contacto y Ubicacion -->
                     <VBox spacing="12.0" styleClass="cecamed-card">
                         <HBox alignment="CENTER_LEFT" spacing="8.0">
-                            <FontIcon iconColor="#0288D1" iconLiteral="feather-phone" iconSize="16"/>
-                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="2. Informaci?n de Contacto"/>
+                            <FontIcon iconColor="#0288D1" iconLiteral="fth-phone" iconSize="16"/>
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="2. Información de Contacto"/>
                         </HBox>
                         <Separator/>
 
@@ -110,18 +110,18 @@
                             </columnConstraints>
 
                             <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Tel?fono Principal"/>
+                                <Label styleClass="form-field-label" text="Teléfono Principal"/>
                                 <TextField fx:id="phoneField" promptText="ej. +504 9876-5432"/>
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Correo Electr?nico"/>
+                                <Label styleClass="form-field-label" text="Correo Electrónico"/>
                                 <TextField fx:id="emailField" promptText="ej. paciente@email.com"/>
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                                <Label styleClass="form-field-label" text="Direcci?n de Residencia"/>
-                                <TextArea fx:id="addressArea" prefRowCount="2" promptText="Colonia, calle, n?mero de casa, ciudad"/>
+                                <Label styleClass="form-field-label" text="Dirección de Residencia"/>
+                                <TextArea fx:id="addressArea" prefRowCount="2" promptText="Colonia, calle, número de casa, ciudad"/>
                             </VBox>
                         </GridPane>
                     </VBox>
@@ -129,7 +129,7 @@
                     <!-- Seccion 3: Tutor / Contacto de Emergencia -->
                     <VBox spacing="12.0" styleClass="cecamed-card">
                         <HBox alignment="CENTER_LEFT" spacing="8.0">
-                            <FontIcon iconColor="#0288D1" iconLiteral="feather-shield" iconSize="16"/>
+                            <FontIcon iconColor="#0288D1" iconLiteral="fth-shield" iconSize="16"/>
                             <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="3. Contacto de Emergencia / Tutor"/>
                         </HBox>
                         <Separator/>
@@ -143,16 +143,16 @@
 
                             <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                 <Label styleClass="form-field-label" text="Nombre Completo"/>
-                                <TextField fx:id="emergencyNameField" promptText="ej. Mar?a Morales"/>
+                                <TextField fx:id="emergencyNameField" promptText="ej. María Morales"/>
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Parentesco / Relaci?n"/>
-                                <TextField fx:id="emergencyRelationshipField" promptText="ej. Madre, C?nyuge"/>
+                                <Label styleClass="form-field-label" text="Parentesco / Relación"/>
+                                <TextField fx:id="emergencyRelationshipField" promptText="ej. Madre, Cónyuge"/>
                             </VBox>
 
                             <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Tel?fono Emergencia"/>
+                                <Label styleClass="form-field-label" text="Teléfono Emergencia"/>
                                 <TextField fx:id="emergencyPhoneField" promptText="ej. +504 9876-0000"/>
                             </VBox>
                         </GridPane>
@@ -161,7 +161,7 @@
                     <!-- Seccion 4: Notas adicionales -->
                     <VBox spacing="8.0" styleClass="cecamed-card">
                         <Label styleClass="form-field-label" text="Observaciones / Notas Administrativas"/>
-                        <TextArea fx:id="notesArea" prefRowCount="2" promptText="Informaci?n adicional relevante..."/>
+                        <TextArea fx:id="notesArea" prefRowCount="2" promptText="Información adicional relevante..."/>
                     </VBox>
 
                 </VBox>
@@ -179,7 +179,7 @@
                 <Button onAction="#handleCancel" styleClass="ghost-button" text="Cancelar"/>
                 <Button fx:id="saveButton" defaultButton="true" onAction="#handleSave" styleClass="primary-button" text="Guardar Paciente">
                     <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="feather-check" iconSize="16"/>
+                        <FontIcon iconColor="WHITE" iconLiteral="fth-check" iconSize="16"/>
                     </graphic>
                 </Button>
             </HBox>

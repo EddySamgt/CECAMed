@@ -24,6 +24,7 @@ public interface ScheduleBlockRepository extends JpaRepository<ScheduleBlock, Lo
         SELECT b FROM ScheduleBlock b
         WHERE b.startDateTime < :endTime
           AND b.endDateTime > :startTime
+        ORDER BY b.startDateTime ASC
     """)
     List<ScheduleBlock> findOverlappingBlocks(
         @Param("startTime") LocalDateTime startTime,

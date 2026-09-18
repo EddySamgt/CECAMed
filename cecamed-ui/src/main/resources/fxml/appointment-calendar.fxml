@@ -27,8 +27,8 @@
     <!-- Header Section -->
     <HBox alignment="CENTER_LEFT" spacing="16.0">
         <VBox spacing="4.0">
-            <Label styleClass="page-title" text="Agenda y Citas M?dicas"/>
-            <Label styleClass="page-subtitle" text="Planificaci?n diaria, semanal y mensual sincronizada con Google Calendar"/>
+            <Label styleClass="page-title" text="Agenda y Citas Médicas"/>
+            <Label styleClass="page-subtitle" text="Planificación diaria, semanal y mensual sincronizada con Google Calendar"/>
         </VBox>
 
         <Region HBox.hgrow="ALWAYS"/>
@@ -37,13 +37,13 @@
         <HBox alignment="CENTER_RIGHT" spacing="10.0">
             <Button onAction="#handleRefresh" styleClass="ghost-button" text="Actualizar">
                 <graphic>
-                    <FontIcon iconLiteral="feather-refresh-cw" iconSize="15"/>
+                    <FontIcon iconLiteral="fth-refresh-cw" iconSize="15"/>
                 </graphic>
             </Button>
 
-            <Button onAction="#handleNewAppointment" styleClass="primary-button" text="Nueva Cita M?dica">
+            <Button onAction="#handleNewAppointment" styleClass="primary-button" text="Nueva Cita Médica">
                 <graphic>
-                    <FontIcon iconColor="WHITE" iconLiteral="feather-calendar" iconSize="16"/>
+                    <FontIcon iconColor="WHITE" iconLiteral="fth-calendar" iconSize="16"/>
                 </graphic>
             </Button>
         </HBox>
@@ -56,13 +56,13 @@
             <HBox alignment="CENTER_LEFT" spacing="4.0">
                 <Button onAction="#handlePrevious" styleClass="ghost-button">
                     <graphic>
-                        <FontIcon iconLiteral="feather-chevron-left" iconSize="18"/>
+                        <FontIcon iconLiteral="fth-chevron-left" iconSize="18"/>
                     </graphic>
                 </Button>
                 <Button onAction="#handleToday" styleClass="ghost-button" text="Hoy"/>
                 <Button onAction="#handleNext" styleClass="ghost-button">
                     <graphic>
-                        <FontIcon iconLiteral="feather-chevron-right" iconSize="18"/>
+                        <FontIcon iconLiteral="fth-chevron-right" iconSize="18"/>
                     </graphic>
                 </Button>
             </HBox>
@@ -77,9 +77,9 @@
 
             <Region HBox.hgrow="ALWAYS"/>
 
-            <!-- View Mode Switcher (D?a / Semana / Mes) -->
+            <!-- View Mode Switcher (Día / Semana / Mes) -->
             <HBox alignment="CENTER_LEFT" spacing="0.0" style="-fx-background-color: #F1F5F9; -fx-background-radius: 6; -fx-padding: 2;">
-                <ToggleButton fx:id="btnModeDay" styleClass="ghost-button" text="D?a" toggleGroup="$viewModeGroup"/>
+                <ToggleButton fx:id="btnModeDay" styleClass="ghost-button" text="Día" toggleGroup="$viewModeGroup"/>
                 <ToggleButton fx:id="btnModeWeek" styleClass="ghost-button" text="Semana" toggleGroup="$viewModeGroup"/>
                 <ToggleButton fx:id="btnModeMonth" styleClass="ghost-button" text="Mes" toggleGroup="$viewModeGroup"/>
             </HBox>
@@ -107,10 +107,10 @@
                 <TableColumn fx:id="colDate" minWidth="90.0" prefWidth="100.0" text="Fecha"/>
                 <TableColumn fx:id="colTime" minWidth="100.0" prefWidth="110.0" text="Horario"/>
                 <TableColumn fx:id="colPatient" minWidth="180.0" prefWidth="220.0" text="Paciente"/>
-                <TableColumn fx:id="colPhone" minWidth="95.0" prefWidth="110.0" text="Tel?fono"/>
+                <TableColumn fx:id="colPhone" minWidth="95.0" prefWidth="110.0" text="Teléfono"/>
                 <TableColumn fx:id="colReason" minWidth="160.0" prefWidth="210.0" text="Motivo de la Cita"/>
                 <TableColumn fx:id="colStatus" minWidth="130.0" prefWidth="140.0" text="Estado de Cita"/>
-                <TableColumn fx:id="colGoogleSync" minWidth="110.0" prefWidth="120.0" text="Sincronizaci?n"/>
+                <TableColumn fx:id="colGoogleSync" minWidth="110.0" prefWidth="120.0" text="Sincronización"/>
                 <TableColumn fx:id="colActions" minWidth="140.0" prefWidth="150.0" sortable="false" text="Acciones"/>
             </columns>
             <columnResizePolicy>

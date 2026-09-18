@@ -59,7 +59,7 @@ public class SettingsController implements Initializable {
     @FXML private RadioButton radioDarkMode;
     @FXML private ToggleGroup themeGroup;
 
-    // Tab Horarios M?dicos
+    // Tab Horarios Médicos
     @FXML private TableView<DoctorScheduleDto> schedulesTable;
     @FXML private TableColumn<DoctorScheduleDto, String> colDayOfWeek;
     @FXML private TableColumn<DoctorScheduleDto, String> colStartTime;
@@ -175,7 +175,7 @@ public class SettingsController implements Initializable {
             {
                 btnDelete.getStyleClass().add("ghost-button");
                 btnDelete.setTooltip(new Tooltip("Eliminar Bloqueo"));
-                FontIcon icon = new FontIcon("feather-trash-2");
+                FontIcon icon = new FontIcon("fth-trash-2");
                 icon.setIconSize(14);
                 icon.setIconColor(javafx.scene.paint.Color.web("#D32F2F"));
                 btnDelete.setGraphic(icon);
@@ -205,7 +205,7 @@ public class SettingsController implements Initializable {
 
     private void setupSystemInfoTab() {
         labelGoogleCalendarId.setText(googleCalendarId != null ? googleCalendarId : "No configurado");
-        labelGoogleSyncStatus.setText(googleCalendarEnabled ? "Habilitado (Activo)" : "Deshabilitado (Simulaci?n en local)");
+        labelGoogleSyncStatus.setText(googleCalendarEnabled ? "Habilitado (Activo)" : "Deshabilitado (Simulación en local)");
 
         labelJavaVersion.setText(System.getProperty("java.version") + " (" + System.getProperty("java.vendor") + ")");
         labelJavaFxVersion.setText("21.0.4 + AtlantaFX 2.0.1");
@@ -216,7 +216,7 @@ public class SettingsController implements Initializable {
             labelCurrentRole.setText(userSession.getRole().getDisplayName());
         } else {
             labelCurrentUser.setText("Usuario por defecto");
-            labelCurrentRole.setText("M?dico");
+            labelCurrentRole.setText("Médico");
         }
     }
 
@@ -254,7 +254,7 @@ public class SettingsController implements Initializable {
     public void handleCreateBlock(ActionEvent event) {
         String title = blockTitleField.getText();
         if (title == null || title.isBlank()) {
-            notificationService.showWarning("Campo Requerido", "Ingrese un t?tulo descriptivo para el bloqueo");
+            notificationService.showWarning("Campo Requerido", "Ingrese un título descriptivo para el bloqueo");
             blockTitleField.requestFocus();
             return;
         }
@@ -273,7 +273,7 @@ public class SettingsController implements Initializable {
         LocalDateTime end = LocalDateTime.of(endDate, endTime);
 
         if (!start.isBefore(end)) {
-            notificationService.showWarning("Rango Inv?lido", "La fecha y hora de inicio debe ser anterior a la de fin");
+            notificationService.showWarning("Rango Inválido", "La fecha y hora de inicio debe ser anterior a la de fin");
             return;
         }
 
@@ -296,7 +296,7 @@ public class SettingsController implements Initializable {
 
         task.setOnSucceeded(e -> {
             btnCreateBlock.setDisable(false);
-            notificationService.showSuccess("Bloqueo Creado", "El bloqueo de agenda fue registrado con ?xito");
+            notificationService.showSuccess("Bloqueo Creado", "El bloqueo de agenda fue registrado con éxito");
             blockTitleField.clear();
             blockNotesField.clear();
             loadBlocksAsync();
@@ -314,7 +314,7 @@ public class SettingsController implements Initializable {
     private void handleDeleteBlock(ScheduleBlockResponseDto block) {
         boolean confirmed = ConfirmationDialog.confirm(
                 "Eliminar Bloqueo",
-                "?Desea eliminar este bloqueo de agenda?",
+                "¿Desea eliminar este bloqueo de agenda?",
                 "Bloqueo: " + block.getTitle() + " (" + block.getBlockType() + ")"
         );
         if (!confirmed) return;
@@ -354,10 +354,10 @@ public class SettingsController implements Initializable {
         return switch (day) {
             case MONDAY -> "Lunes";
             case TUESDAY -> "Martes";
-            case WEDNESDAY -> "Mi?rcoles";
+            case WEDNESDAY -> "Miércoles";
             case THURSDAY -> "Jueves";
             case FRIDAY -> "Viernes";
-            case SATURDAY -> "S?bado";
+            case SATURDAY -> "Sábado";
             case SUNDAY -> "Domingo";
         };
     }

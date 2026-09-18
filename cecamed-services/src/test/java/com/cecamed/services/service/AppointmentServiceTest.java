@@ -170,4 +170,16 @@ class AppointmentServiceTest {
         assertThat(slots.get(0).getReasonIfNotAvailable()).contains("otra cita");
         assertThat(slots.get(1).isAvailable()).isTrue();
     }
+    @Test
+    @org.junit.jupiter.api.Timeout(2)
+    void shouldStopBeforeMidnightWhenLastSlotDoesNotFit() {
+        LocalDate date = LocalDate.of(2026, 10, 12);
+        DoctorSchedule schedule = DoctorSchedule.builder().dayOfWeek(DayOfWeek.MONDAY)
+                .startTime(LocalTime.of(23, 0)).endTime(LocalTime.of(23, 45))
+                .slotDurationMinutes(30).build();
+        when(doctorScheduleRepository.findByDayOfWeekAndIsActiveTrue(DayOfWeek.MONDAY))
+                .thenReturn(Optional.of(schedule));
+        assertThat(appointmentService.getAvailableSlotsForDate(date)).hasSize(1);
+    }
+
 }

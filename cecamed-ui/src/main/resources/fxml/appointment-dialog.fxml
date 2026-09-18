@@ -25,9 +25,9 @@
     <top>
         <VBox spacing="6.0" style="-fx-padding: 20 24 16 24; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
             <HBox alignment="CENTER_LEFT" spacing="12.0">
-                <FontIcon iconColor="#0288D1" iconLiteral="feather-calendar" iconSize="24"/>
+                <FontIcon iconColor="#0288D1" iconLiteral="fth-calendar" iconSize="24"/>
                 <VBox>
-                    <Label fx:id="dialogTitleLabel" styleClass="page-title" style="-fx-font-size: 18px;" text="Agendar Nueva Cita M?dica"/>
+                    <Label fx:id="dialogTitleLabel" styleClass="page-title" style="-fx-font-size: 18px;" text="Agendar Nueva Cita Médica"/>
                     <Label fx:id="dialogSubtitleLabel" styleClass="page-subtitle" style="-fx-font-size: 12px;" text="Seleccione el paciente, fecha y horario disponible"/>
                 </VBox>
             </HBox>
@@ -38,10 +38,10 @@
     <center>
         <VBox spacing="16.0" style="-fx-padding: 20 24 20 24;">
 
-            <!-- Selecci?n de Paciente -->
+            <!-- Selección de Paciente -->
             <VBox spacing="6.0" styleClass="cecamed-card">
                 <HBox alignment="CENTER_LEFT" spacing="8.0">
-                    <FontIcon iconColor="#0288D1" iconLiteral="feather-user" iconSize="15"/>
+                    <FontIcon iconColor="#0288D1" iconLiteral="fth-user" iconSize="15"/>
                     <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="1. Paciente"/>
                 </HBox>
                 <Separator/>
@@ -51,11 +51,11 @@
                 </VBox>
             </VBox>
 
-            <!-- Selecci?n de Fecha y Horario -->
+            <!-- Selección de Fecha y Horario -->
             <VBox spacing="6.0" styleClass="cecamed-card">
                 <HBox alignment="CENTER_LEFT" spacing="8.0">
-                    <FontIcon iconColor="#0288D1" iconLiteral="feather-clock" iconSize="15"/>
-                    <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="2. Fecha y Horario de Atenci?n"/>
+                    <FontIcon iconColor="#0288D1" iconLiteral="fth-clock" iconSize="15"/>
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="2. Fecha y Horario de Atención"/>
                 </HBox>
                 <Separator/>
 
@@ -81,19 +81,19 @@
             <!-- Motivo y Notas -->
             <VBox spacing="10.0" styleClass="cecamed-card">
                 <HBox alignment="CENTER_LEFT" spacing="8.0">
-                    <FontIcon iconColor="#0288D1" iconLiteral="feather-file-text" iconSize="15"/>
+                    <FontIcon iconColor="#0288D1" iconLiteral="fth-file-text" iconSize="15"/>
                     <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="3. Detalles de la Cita"/>
                 </HBox>
                 <Separator/>
 
                 <VBox spacing="4.0">
                     <Label styleClass="form-field-label" text="Motivo de la Cita / Consulta *"/>
-                    <TextField fx:id="reasonField" promptText="ej. Control mensual, dolor abdominal agudo, revisi?n de ex?menes..."/>
+                    <TextField fx:id="reasonField" promptText="ej. Control mensual, dolor abdominal agudo, revisión de exámenes..."/>
                 </VBox>
 
                 <!-- Campo visible solo al reprogramar -->
                 <VBox spacing="4.0">
-                    <Label fx:id="rescheduleReasonLabel" styleClass="form-field-label" style="-fx-text-fill: #D32F2F;" text="Motivo de Reprogramaci?n *"/>
+                    <Label fx:id="rescheduleReasonLabel" styleClass="form-field-label" style="-fx-text-fill: #D32F2F;" text="Motivo de Reprogramación *"/>
                     <TextField fx:id="rescheduleReasonField" promptText="Indique la causa del cambio de fecha/horario..."/>
                 </VBox>
 
@@ -116,7 +116,7 @@
                 <Button onAction="#handleCancel" styleClass="ghost-button" text="Cancelar"/>
                 <Button fx:id="saveButton" defaultButton="true" onAction="#handleSave" styleClass="primary-button" text="Agendar Cita">
                     <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="feather-check" iconSize="16"/>
+                        <FontIcon iconColor="WHITE" iconLiteral="fth-check" iconSize="16"/>
                     </graphic>
                 </Button>
             </HBox>

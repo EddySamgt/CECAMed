@@ -496,7 +496,7 @@ public class MedicalRecordController implements Initializable {
             consultationsList.add(0, created);
             consultationsTable.getSelectionModel().select(created);
             initNewConsultationFormDefaults();
-            recordTabPane.getSelectionModel().select(1); // Cambiar a pesta?a de Historial
+            recordTabPane.getSelectionModel().select(1); // Cambiar a pestaña de Historial
         });
 
         task.setOnFailed(e -> {

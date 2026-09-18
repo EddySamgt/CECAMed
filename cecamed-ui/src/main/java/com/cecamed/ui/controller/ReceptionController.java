@@ -75,7 +75,7 @@ public class ReceptionController implements Initializable {
     @FXML private Label waitingCountLabel;
     @FXML private ProgressIndicator loadingIndicator;
 
-    // Tabla Citas del D?a
+    // Tabla Citas del Día
     @FXML private TableView<AppointmentResponseDto> todayAppointmentsTable;
     @FXML private TableColumn<AppointmentResponseDto, String> colTime;
     @FXML private TableColumn<AppointmentResponseDto, String> colPatient;
@@ -112,10 +112,10 @@ public class ReceptionController implements Initializable {
     }
 
     private void setupStatCards() {
-        cardTodayAppointments = new StatCard("Citas de Hoy", "0", "Total agendadas", "feather-calendar", "primary");
-        cardWaitingRoom = new StatCard("En Sala de Espera", "0", "Pacientes aguardando", "feather-clock", "warning");
-        cardAttendedToday = new StatCard("Atendidos Hoy", "0", "Consultas finalizadas", "feather-check-circle", "success");
-        cardPendingToday = new StatCard("Pendientes", "0", "Por ingresar", "feather-user-check", "accent");
+        cardTodayAppointments = new StatCard("Citas de Hoy", "0", "Total agendadas", "fth-calendar", "primary");
+        cardWaitingRoom = new StatCard("En Sala de Espera", "0", "Pacientes aguardando", "fth-clock", "warning");
+        cardAttendedToday = new StatCard("Atendidos Hoy", "0", "Consultas finalizadas", "fth-check-circle", "success");
+        cardPendingToday = new StatCard("Pendientes", "0", "Por ingresar", "fth-user-check", "accent");
 
         statCardsContainer.getChildren().addAll(cardTodayAppointments, cardWaitingRoom, cardAttendedToday, cardPendingToday);
     }
@@ -180,14 +180,14 @@ public class ReceptionController implements Initializable {
 
                 btnConfirm.getStyleClass().add("ghost-button");
                 btnConfirm.setTooltip(new Tooltip("Confirmar Asistencia"));
-                FontIcon iconConf = new FontIcon("feather-thumbs-up");
+                FontIcon iconConf = new FontIcon("fth-thumbs-up");
                 iconConf.setIconSize(13);
                 btnConfirm.setGraphic(iconConf);
 
                 btnCheckIn.getStyleClass().addAll("accent-button");
                 btnCheckIn.setStyle("-fx-padding: 3 8; -fx-font-size: 11px;");
                 btnCheckIn.setText("Check-in");
-                FontIcon iconCheck = new FontIcon("feather-user-check");
+                FontIcon iconCheck = new FontIcon("fth-user-check");
                 iconCheck.setIconSize(12);
                 iconCheck.setIconColor(javafx.scene.paint.Color.WHITE);
                 btnCheckIn.setGraphic(iconCheck);
@@ -195,21 +195,21 @@ public class ReceptionController implements Initializable {
                 btnConsult.getStyleClass().add("primary-button");
                 btnConsult.setStyle("-fx-padding: 3 8; -fx-font-size: 11px;");
                 btnConsult.setText("A Consulta");
-                FontIcon iconDoc = new FontIcon("feather-arrow-right-circle");
+                FontIcon iconDoc = new FontIcon("fth-arrow-right-circle");
                 iconDoc.setIconSize(12);
                 iconDoc.setIconColor(javafx.scene.paint.Color.WHITE);
                 btnConsult.setGraphic(iconDoc);
 
                 btnNoShow.getStyleClass().add("ghost-button");
-                btnNoShow.setTooltip(new Tooltip("Marcar No Asisti?"));
-                FontIcon iconNo = new FontIcon("feather-user-x");
+                btnNoShow.setTooltip(new Tooltip("Marcar No Asistió"));
+                FontIcon iconNo = new FontIcon("fth-user-x");
                 iconNo.setIconSize(13);
                 iconNo.setIconColor(javafx.scene.paint.Color.web("#D32F2F"));
                 btnNoShow.setGraphic(iconNo);
 
                 btnReschedule.getStyleClass().add("ghost-button");
                 btnReschedule.setTooltip(new Tooltip("Reprogramar Cita"));
-                FontIcon iconRes = new FontIcon("feather-calendar");
+                FontIcon iconRes = new FontIcon("fth-calendar");
                 iconRes.setIconSize(13);
                 btnReschedule.setGraphic(iconRes);
 
@@ -225,7 +225,7 @@ public class ReceptionController implements Initializable {
 
                 btnConsult.setOnAction(e -> {
                     AppointmentResponseDto item = getTableView().getItems().get(getIndex());
-                    handleUpdateStatus(item, AppointmentStatus.ATENDIDA, "Paciente ingresado a consulta con el m?dico");
+                    handleUpdateStatus(item, AppointmentStatus.ATENDIDA, "Paciente ingresado a consulta con el médico");
                 });
 
                 btnNoShow.setOnAction(e -> {
@@ -287,7 +287,7 @@ public class ReceptionController implements Initializable {
             {
                 btnEnter.getStyleClass().add("primary-button");
                 btnEnter.setStyle("-fx-padding: 4 10; -fx-font-size: 11px;");
-                FontIcon icon = new FontIcon("feather-check");
+                FontIcon icon = new FontIcon("fth-check");
                 icon.setIconColor(javafx.scene.paint.Color.WHITE);
                 icon.setIconSize(13);
                 btnEnter.setGraphic(icon);
@@ -295,7 +295,7 @@ public class ReceptionController implements Initializable {
                 btnEnter.setOnAction(e -> {
                     WaitingPatientItem item = getTableView().getItems().get(getIndex());
                     handleUpdateStatus(item.appointment(), AppointmentStatus.ATENDIDA,
-                            "Paciente " + item.appointment().getPatientFullName() + " pas? al consultorio m?dico");
+                            "Paciente " + item.appointment().getPatientFullName() + " pasó al consultorio médico");
                 });
             }
 
@@ -353,8 +353,8 @@ public class ReceptionController implements Initializable {
 
         task.setOnFailed(e -> {
             loadingIndicator.setVisible(false);
-            log.error("Error al cargar citas de recepci?n", task.getException());
-            notificationService.showError("Error", "No fue posible cargar las citas del d?a");
+            log.error("Error al cargar citas de recepción", task.getException());
+            notificationService.showError("Error", "No fue posible cargar las citas del día");
         });
 
         new Thread(task).start();
@@ -422,18 +422,18 @@ public class ReceptionController implements Initializable {
 
     private void handleCheckIn(AppointmentResponseDto app) {
         ARRIVAL_TIMES.put(app.getId(), LocalTime.now());
-        handleUpdateStatus(app, AppointmentStatus.EN_SALA, "Check-in completado: " + app.getPatientFullName() + " pas? a sala de espera");
+        handleUpdateStatus(app, AppointmentStatus.EN_SALA, "Check-in completado: " + app.getPatientFullName() + " pasó a sala de espera");
     }
 
     private void handleNoShow(AppointmentResponseDto app) {
         boolean confirmed = ConfirmationDialog.confirm(
                 "Marcar Inasistencia",
-                "?Desea registrar al paciente como NO ASISTI??",
+                "¿Desea registrar al paciente como NO ASISTIÓ?",
                 "Paciente: " + app.getPatientFullName() + " - Cita: " + app.getStartTime().toLocalTime()
         );
         if (!confirmed) return;
 
-        handleUpdateStatus(app, AppointmentStatus.NO_ASISTIO, "Cita marcada como No Asisti?");
+        handleUpdateStatus(app, AppointmentStatus.NO_ASISTIO, "Cita marcada como No Asistió");
     }
 
     private void handleUpdateStatus(AppointmentResponseDto app, AppointmentStatus newStatus, String successMsg) {
@@ -448,13 +448,13 @@ public class ReceptionController implements Initializable {
 
         task.setOnSucceeded(e -> {
             loadingIndicator.setVisible(false);
-            notificationService.showSuccess("Recepci?n", successMsg);
+            notificationService.showSuccess("Recepción", successMsg);
             loadTodayAppointmentsAsync();
         });
 
         task.setOnFailed(e -> {
             loadingIndicator.setVisible(false);
-            log.error("Error al actualizar estado en recepci?n", task.getException());
+            log.error("Error al actualizar estado en recepción", task.getException());
             notificationService.showError("Error", "No fue posible actualizar el estado de la cita");
         });
 
@@ -486,8 +486,8 @@ public class ReceptionController implements Initializable {
                 loadTodayAppointmentsAsync();
             }
         } catch (IOException ex) {
-            log.error("Error al abrir di?logo de reprogramaci?n", ex);
-            notificationService.showError("Error", "No se pudo abrir el di?logo de reprogramaci?n");
+            log.error("Error al abrir diálogo de reprogramación", ex);
+            notificationService.showError("Error", "No se pudo abrir el diálogo de reprogramación");
         }
     }
 
@@ -505,7 +505,7 @@ public class ReceptionController implements Initializable {
             AppointmentDialogController dialogCtrl = loader.getController();
 
             Stage stage = new Stage();
-            stage.setTitle("Agendar Cita R?pida - CECAMed");
+            stage.setTitle("Agendar Cita Rápida - CECAMed");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(todayAppointmentsTable.getScene().getWindow());
 
@@ -522,8 +522,8 @@ public class ReceptionController implements Initializable {
                 loadTodayAppointmentsAsync();
             }
         } catch (IOException ex) {
-            log.error("Error al abrir di?logo de citas", ex);
-            notificationService.showError("Error", "No fue posible abrir el di?logo de cita");
+            log.error("Error al abrir diálogo de citas", ex);
+            notificationService.showError("Error", "No fue posible abrir el diálogo de cita");
         }
     }
 

@@ -70,15 +70,15 @@ public class DashboardController implements Initializable {
     }
 
     private void setupWelcomeText() {
-        String name = userSession.isAuthenticated() ? userSession.getFullName() : "Dr. Carlos Morales";
+        String name = userSession.isAuthenticated() ? userSession.getFullName() : "Dr. Angel Anibal Mazariegos Pinales";
         welcomeLabel.setText("¡Bienvenido, " + name + "!");
     }
 
     private void setupStatCards() {
-        cardAppointmentsToday = new StatCard("Citas de Hoy", "0", "Programadas para el día", "feather-calendar", "primary");
-        cardWaitingRoom = new StatCard("En Sala de Espera", "0", "Pacientes aguardando atención", "feather-clock", "warning");
-        cardCompletedToday = new StatCard("Atendidos Hoy", "0", "Consultas finalizadas", "feather-check-circle", "success");
-        cardPatientsActive = new StatCard("Pacientes Activos", "0", "Total en base de datos", "feather-users", "accent");
+        cardAppointmentsToday = new StatCard("Citas de Hoy", "0", "Programadas para el día", "fth-calendar", "primary");
+        cardWaitingRoom = new StatCard("En Sala de Espera", "0", "Pacientes aguardando atención", "fth-clock", "warning");
+        cardCompletedToday = new StatCard("Atendidos Hoy", "0", "Consultas finalizadas", "fth-check-circle", "success");
+        cardPatientsActive = new StatCard("Pacientes Activos", "0", "Total en base de datos", "fth-users", "accent");
 
         statCardsContainer.getChildren().addAll(cardAppointmentsToday, cardWaitingRoom, cardCompletedToday, cardPatientsActive);
     }

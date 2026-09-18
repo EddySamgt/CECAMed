@@ -181,18 +181,18 @@ public class PatientListController implements Initializable {
 
                 btnRecord.getStyleClass().addAll("ghost-button");
                 btnRecord.setTooltip(new Tooltip("Ver Expediente Clinico"));
-                FontIcon iconRecord = new FontIcon("feather-clipboard");
+                FontIcon iconRecord = new FontIcon("fth-clipboard");
                 iconRecord.setIconSize(15);
                 btnRecord.setGraphic(iconRecord);
 
                 btnEdit.getStyleClass().addAll("ghost-button");
                 btnEdit.setTooltip(new Tooltip("Editar Datos del Paciente"));
-                FontIcon iconEdit = new FontIcon("feather-edit-2");
+                FontIcon iconEdit = new FontIcon("fth-edit-2");
                 iconEdit.setIconSize(15);
                 btnEdit.setGraphic(iconEdit);
 
                 btnToggleStatus.getStyleClass().addAll("ghost-button");
-                FontIcon iconStatus = new FontIcon("feather-power");
+                FontIcon iconStatus = new FontIcon("fth-power");
                 iconStatus.setIconSize(15);
                 btnToggleStatus.setGraphic(iconStatus);
 
@@ -221,11 +221,11 @@ public class PatientListController implements Initializable {
                     PatientResponseDto patient = getTableView().getItems().get(getIndex());
                     if (Boolean.TRUE.equals(patient.getActive())) {
                         btnToggleStatus.setTooltip(new Tooltip("Desactivar Paciente"));
-                        ((FontIcon) btnToggleStatus.getGraphic()).setIconLiteral("feather-user-x");
+                        ((FontIcon) btnToggleStatus.getGraphic()).setIconLiteral("fth-user-x");
                         btnToggleStatus.setStyle("-fx-text-fill: #D32F2F;");
                     } else {
                         btnToggleStatus.setTooltip(new Tooltip("Reactivar Paciente"));
-                        ((FontIcon) btnToggleStatus.getGraphic()).setIconLiteral("feather-user-check");
+                        ((FontIcon) btnToggleStatus.getGraphic()).setIconLiteral("fth-user-check");
                         btnToggleStatus.setStyle("-fx-text-fill: #16A34A;");
                     }
                     setGraphic(container);
@@ -257,7 +257,7 @@ public class PatientListController implements Initializable {
     private void setupEmptyStatePlaceholder() {
         VBox placeholder = new VBox(10);
         placeholder.setAlignment(Pos.CENTER);
-        FontIcon icon = new FontIcon("feather-users");
+        FontIcon icon = new FontIcon("fth-users");
         icon.setIconSize(36);
         icon.setStyle("-fx-icon-color: #94A3B8;");
         Label label = new Label("No se encontraron pacientes registrados o que coincidan con la busqueda");

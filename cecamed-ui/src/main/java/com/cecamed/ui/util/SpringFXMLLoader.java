@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 @Component
 @RequiredArgsConstructor
@@ -25,6 +26,7 @@ public class SpringFXMLLoader {
             throw new IllegalArgumentException("No se encontró el recurso FXML: " + fxmlPath);
         }
         FXMLLoader loader = new FXMLLoader(resource);
+        loader.setCharset(StandardCharsets.UTF_8);
         loader.setControllerFactory(context::getBean);
         return loader;
     }

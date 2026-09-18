@@ -71,6 +71,7 @@ tokens/
 
 # Local Clinical Storage / Uploaded Patient Documents (File System Storage)
 uploads/
+/storage/
 attachments/
 **/uploads/
 **/attachments/
@@ -83,3 +84,8 @@ logs/
 *.bak
 *.swp
 *~
+
+# Local databases
+/data/
+*.mv.db
+*.trace.db

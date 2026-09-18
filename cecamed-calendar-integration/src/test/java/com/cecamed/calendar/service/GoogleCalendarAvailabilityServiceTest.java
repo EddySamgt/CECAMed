@@ -189,4 +189,14 @@ class GoogleCalendarAvailabilityServiceTest {
         assertThat(slots).hasSize(4);
         assertThat(slots).allMatch(s -> !s.isBusy());
     }
+    @Test
+    @org.junit.jupiter.api.Timeout(2)
+    void shouldStopBeforeMidnightWhenLastSlotDoesNotFit() {
+        mondaySchedule.setStartTime(LocalTime.of(23, 0));
+        mondaySchedule.setEndTime(LocalTime.of(23, 45));
+        when(doctorScheduleRepository.findByDayOfWeekAndIsActiveTrue(DayOfWeek.MONDAY))
+                .thenReturn(Optional.of(mondaySchedule));
+        assertThat(availabilityService.getUnifiedSlots(testMonday)).hasSize(1);
+    }
+
 }

@@ -41,37 +41,37 @@ public class StatusBadge extends HBox {
         switch (status) {
             case CONFIRMADA -> {
                 label.setText("Confirmada");
-                icon.setIconLiteral("feather-check-circle");
+                icon.setIconLiteral("fth-check-circle");
                 getStyleClass().add("badge-success");
             }
             case EN_SALA -> {
                 label.setText("En Sala");
-                icon.setIconLiteral("feather-clock");
+                icon.setIconLiteral("fth-clock");
                 getStyleClass().add("badge-warning");
             }
             case ATENDIDA -> {
                 label.setText("Atendida");
-                icon.setIconLiteral("feather-check");
+                icon.setIconLiteral("fth-check");
                 getStyleClass().add("badge-success");
             }
             case PROGRAMADA -> {
                 label.setText("Programada");
-                icon.setIconLiteral("feather-calendar");
+                icon.setIconLiteral("fth-calendar");
                 getStyleClass().add("badge-info");
             }
             case REPROGRAMADA -> {
                 label.setText("Reprogramada");
-                icon.setIconLiteral("feather-refresh-cw");
+                icon.setIconLiteral("fth-refresh-cw");
                 getStyleClass().add("badge-info");
             }
             case NO_ASISTIO -> {
                 label.setText("No Asistió");
-                icon.setIconLiteral("feather-user-x");
+                icon.setIconLiteral("fth-user-x");
                 getStyleClass().add("badge-danger");
             }
             case CANCELADA -> {
                 label.setText("Cancelada");
-                icon.setIconLiteral("feather-x-circle");
+                icon.setIconLiteral("fth-x-circle");
                 getStyleClass().add("badge-danger");
             }
         }
@@ -87,22 +87,22 @@ public class StatusBadge extends HBox {
         switch (status) {
             case SYNCED -> {
                 label.setText("Sincronizado");
-                icon.setIconLiteral("feather-cloud");
+                icon.setIconLiteral("fth-cloud");
                 getStyleClass().add("badge-success");
             }
             case PENDING -> {
                 label.setText("Pendiente");
-                icon.setIconLiteral("feather-loader");
+                icon.setIconLiteral("fth-loader");
                 getStyleClass().add("badge-warning");
             }
             case FAILED -> {
                 label.setText("Fallo Sync");
-                icon.setIconLiteral("feather-alert-triangle");
+                icon.setIconLiteral("fth-alert-triangle");
                 getStyleClass().add("badge-danger");
             }
             case NOT_APPLICABLE -> {
                 label.setText("Desactivado");
-                icon.setIconLiteral("feather-cloud-off");
+                icon.setIconLiteral("fth-cloud-off");
                 getStyleClass().add("badge-secondary");
             }
         }

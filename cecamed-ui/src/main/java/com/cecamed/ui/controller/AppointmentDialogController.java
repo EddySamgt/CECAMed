@@ -151,7 +151,7 @@ public class AppointmentDialogController implements Initializable {
 
     public void initCreateMode(LocalDate preselectedDate, Long preselectedPatientId) {
         this.reschedulingAppointmentId = null;
-        dialogTitleLabel.setText("Agendar Nueva Cita M?dica");
+        dialogTitleLabel.setText("Agendar Nueva Cita Médica");
         dialogSubtitleLabel.setText("Seleccione el paciente, fecha y horario disponible");
         saveButton.setText("Agendar Cita");
 
@@ -170,9 +170,9 @@ public class AppointmentDialogController implements Initializable {
 
     public void initRescheduleMode(AppointmentResponseDto appointment) {
         this.reschedulingAppointmentId = appointment.getId();
-        dialogTitleLabel.setText("Reprogramar Cita M?dica");
-        dialogSubtitleLabel.setText("Seleccione el nuevo d?a y horario para el paciente " + appointment.getPatientFullName());
-        saveButton.setText("Confirmar Reprogramaci?n");
+        dialogTitleLabel.setText("Reprogramar Cita Médica");
+        dialogSubtitleLabel.setText("Seleccione el nuevo día y horario para el paciente " + appointment.getPatientFullName());
+        saveButton.setText("Confirmar Reprogramación");
 
         rescheduleReasonLabel.setVisible(true);
         rescheduleReasonLabel.setManaged(true);
@@ -259,7 +259,7 @@ public class AppointmentDialogController implements Initializable {
         errorLabel.setVisible(false);
 
         if (reschedulingAppointmentId == null) {
-            // Modo Creaci?n
+            // Modo Creación
             AppointmentRequestDto requestDto = AppointmentRequestDto.builder()
                     .patientId(selectedPatient.getId())
                     .startTime(selectedSlot.getStartTime())
@@ -293,7 +293,7 @@ public class AppointmentDialogController implements Initializable {
             new Thread(task).start();
 
         } else {
-            // Modo Reprogramaci?n
+            // Modo Reprogramación
             String rescheduleReason = rescheduleReasonField.getText() != null ? rescheduleReasonField.getText().trim() : "";
             AppointmentRescheduleDto rescheduleDto = AppointmentRescheduleDto.builder()
                     .newStartTime(selectedSlot.getStartTime())
@@ -314,7 +314,7 @@ public class AppointmentDialogController implements Initializable {
                 AppointmentResponseDto updated = task.getValue();
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                 notificationService.showSuccess("Cita Reprogramada",
-                        "La cita fue reprogramada con ?xito para el " + updated.getStartTime().format(dtf));
+                        "La cita fue reprogramada con éxito para el " + updated.getStartTime().format(dtf));
                 if (dialogStage != null) dialogStage.close();
             });
 
@@ -360,7 +360,7 @@ public class AppointmentDialogController implements Initializable {
             return false;
         }
         if (!slotComboBox.getValue().isAvailable()) {
-            showError("El horario seleccionado est? ocupado o bloqueado. Elija otro horario.");
+            showError("El horario seleccionado está ocupado o bloqueado. Elija otro horario.");
             slotComboBox.requestFocus();
             return false;
         }

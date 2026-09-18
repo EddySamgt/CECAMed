@@ -20,7 +20,7 @@
         <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="cecamed-topbar">
             <!-- Brand & Clock -->
             <HBox alignment="CENTER_LEFT" spacing="12.0">
-                <FontIcon iconColor="#D32F2F" iconLiteral="feather-activity" iconSize="26"/>
+                <FontIcon iconColor="#D32F2F" iconLiteral="fth-activity" iconSize="26"/>
                 <VBox alignment="CENTER_LEFT">
                     <Label styleClass="brand-title" style="-fx-font-size: 17px;" text="CECAMed"/>
                     <Label styleClass="brand-subtitle" style="-fx-font-size: 10px;" text="Control &amp; Gestión Médica"/>
@@ -30,7 +30,7 @@
             <Separator orientation="VERTICAL"/>
 
             <HBox alignment="CENTER_LEFT" spacing="8.0">
-                <FontIcon iconColor="#64748B" iconLiteral="feather-calendar" iconSize="16"/>
+                <FontIcon iconColor="#64748B" iconLiteral="fth-calendar" iconSize="16"/>
                 <Label fx:id="clockLabel" styleClass="page-subtitle" text="Lunes, 1 de Enero..."/>
             </HBox>
 
@@ -46,15 +46,15 @@
                 <!-- Theme Toggle Button -->
                 <Button onAction="#handleToggleTheme" styleClass="ghost-button" tooltip="$null">
                     <graphic>
-                        <FontIcon fx:id="toggleThemeIcon" iconLiteral="feather-moon" iconSize="18"/>
+                        <FontIcon fx:id="toggleThemeIcon" iconLiteral="fth-moon" iconSize="18"/>
                     </graphic>
                 </Button>
 
                 <!-- User Card Info -->
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
-                    <FontIcon iconColor="#0288D1" iconLiteral="feather-user" iconSize="20"/>
+                    <FontIcon iconColor="#0288D1" iconLiteral="fth-user" iconSize="20"/>
                     <VBox alignment="CENTER_LEFT">
-                        <Label fx:id="userFullNameLabel" style="-fx-font-weight: bold;" text="Dr. Carlos Morales"/>
+                        <Label fx:id="userFullNameLabel" style="-fx-font-weight: bold;" text="Dr. Angel Anibal Mazariegos Pinales"/>
                         <Label fx:id="userRoleLabel" styleClass="page-subtitle" style="-fx-font-size: 11px;" text="Médico Especialista"/>
                     </VBox>
                 </HBox>
@@ -62,7 +62,7 @@
                 <!-- Logout Button -->
                 <Button onAction="#handleLogout" styleClass="ghost-button" text="Salir">
                     <graphic>
-                        <FontIcon iconColor="#D32F2F" iconLiteral="feather-log-out" iconSize="16"/>
+                        <FontIcon iconColor="#D32F2F" iconLiteral="fth-log-out" iconSize="16"/>
                     </graphic>
                 </Button>
             </HBox>
@@ -76,31 +76,31 @@
 
             <Button fx:id="btnDashboard" onAction="#handleNavDashboard" styleClass="nav-button" text="Dashboard">
                 <graphic>
-                    <FontIcon iconLiteral="feather-home" iconSize="18"/>
+                    <FontIcon iconLiteral="fth-home" iconSize="18"/>
                 </graphic>
             </Button>
 
             <Button fx:id="btnPatients" onAction="#handleNavPatients" styleClass="nav-button" text="Pacientes">
                 <graphic>
-                    <FontIcon iconLiteral="feather-users" iconSize="18"/>
+                    <FontIcon iconLiteral="fth-users" iconSize="18"/>
                 </graphic>
             </Button>
 
             <Button fx:id="btnMedicalRecord" onAction="#handleNavMedicalRecord" styleClass="nav-button" text="Expediente Clínico">
                 <graphic>
-                    <FontIcon iconLiteral="feather-clipboard" iconSize="18"/>
+                    <FontIcon iconLiteral="fth-clipboard" iconSize="18"/>
                 </graphic>
             </Button>
 
             <Button fx:id="btnAppointments" onAction="#handleNavAppointments" styleClass="nav-button" text="Agenda Médica">
                 <graphic>
-                    <FontIcon iconLiteral="feather-calendar" iconSize="18"/>
+                    <FontIcon iconLiteral="fth-calendar" iconSize="18"/>
                 </graphic>
             </Button>
 
             <Button fx:id="btnReception" onAction="#handleNavReception" styleClass="nav-button" text="Recepción &amp; Espera">
                 <graphic>
-                    <FontIcon iconLiteral="feather-inbox" iconSize="18"/>
+                    <FontIcon iconLiteral="fth-inbox" iconSize="18"/>
                 </graphic>
             </Button>
 
@@ -111,7 +111,7 @@
 
             <Button fx:id="btnSettings" onAction="#handleNavSettings" styleClass="nav-button" text="Configuración">
                 <graphic>
-                    <FontIcon iconLiteral="feather-settings" iconSize="18"/>
+                    <FontIcon iconLiteral="fth-settings" iconSize="18"/>
                 </graphic>
             </Button>
         </VBox>

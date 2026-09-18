@@ -197,27 +197,27 @@ public class AppointmentCalendarController implements Initializable {
                 container.setAlignment(Pos.CENTER);
 
                 btnRecord.getStyleClass().add("ghost-button");
-                btnRecord.setTooltip(new Tooltip("Ver Expediente Cl?nico"));
-                FontIcon iconRec = new FontIcon("feather-clipboard");
+                btnRecord.setTooltip(new Tooltip("Ver Expediente Clínico"));
+                FontIcon iconRec = new FontIcon("fth-clipboard");
                 iconRec.setIconSize(14);
                 btnRecord.setGraphic(iconRec);
 
                 btnReschedule.getStyleClass().add("ghost-button");
                 btnReschedule.setTooltip(new Tooltip("Reprogramar Cita"));
-                FontIcon iconRes = new FontIcon("feather-refresh-cw");
+                FontIcon iconRes = new FontIcon("fth-refresh-cw");
                 iconRes.setIconSize(14);
                 btnReschedule.setGraphic(iconRes);
 
                 btnComplete.getStyleClass().add("ghost-button");
                 btnComplete.setTooltip(new Tooltip("Marcar como Atendida"));
-                FontIcon iconComp = new FontIcon("feather-check-circle");
+                FontIcon iconComp = new FontIcon("fth-check-circle");
                 iconComp.setIconSize(14);
                 iconComp.setIconColor(javafx.scene.paint.Color.web("#16A34A"));
                 btnComplete.setGraphic(iconComp);
 
                 btnCancel.getStyleClass().add("ghost-button");
                 btnCancel.setTooltip(new Tooltip("Cancelar Cita"));
-                FontIcon iconCan = new FontIcon("feather-x-circle");
+                FontIcon iconCan = new FontIcon("fth-x-circle");
                 iconCan.setIconSize(14);
                 iconCan.setIconColor(javafx.scene.paint.Color.web("#D32F2F"));
                 btnCancel.setGraphic(iconCan);
@@ -263,10 +263,10 @@ public class AppointmentCalendarController implements Initializable {
     private void setupEmptyPlaceholder() {
         VBox placeholder = new VBox(8);
         placeholder.setAlignment(Pos.CENTER);
-        FontIcon icon = new FontIcon("feather-calendar");
+        FontIcon icon = new FontIcon("fth-calendar");
         icon.setIconSize(36);
         icon.setStyle("-fx-icon-color: #94A3B8;");
-        Label label = new Label("No hay citas m?dicas programadas para el per?odo seleccionado");
+        Label label = new Label("No hay citas médicas programadas para el período seleccionado");
         label.setStyle("-fx-text-fill: #64748B; -fx-font-size: 13px;");
         placeholder.getChildren().addAll(icon, label);
         appointmentsTable.setPlaceholder(placeholder);
@@ -387,7 +387,7 @@ public class AppointmentCalendarController implements Initializable {
             AppointmentDialogController dialogCtrl = loader.getController();
 
             Stage stage = new Stage();
-            stage.setTitle("Agendar Cita M?dica - CECAMed");
+            stage.setTitle("Agendar Cita Médica - CECAMed");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(appointmentsTable.getScene().getWindow());
 
@@ -404,8 +404,8 @@ public class AppointmentCalendarController implements Initializable {
                 loadAppointmentsAsync();
             }
         } catch (IOException ex) {
-            log.error("Error al abrir di?logo de citas", ex);
-            notificationService.showError("Error", "No fue posible abrir el di?logo de nueva cita");
+            log.error("Error al abrir diálogo de citas", ex);
+            notificationService.showError("Error", "No fue posible abrir el diálogo de nueva cita");
         }
     }
 
@@ -434,15 +434,15 @@ public class AppointmentCalendarController implements Initializable {
                 loadAppointmentsAsync();
             }
         } catch (IOException ex) {
-            log.error("Error al abrir di?logo de reprogramaci?n", ex);
-            notificationService.showError("Error", "No se pudo abrir el di?logo para reprogramar la cita");
+            log.error("Error al abrir diálogo de reprogramación", ex);
+            notificationService.showError("Error", "No se pudo abrir el diálogo para reprogramar la cita");
         }
     }
 
     private void handleCompleteAppointment(AppointmentResponseDto appointment) {
         boolean confirmed = ConfirmationDialog.confirm(
-                "Finalizar Atenci?n M?dica",
-                "?Desea marcar como ATENDIDA la cita?",
+                "Finalizar Atención Médica",
+                "¿Desea marcar como ATENDIDA la cita?",
                 "Paciente: " + appointment.getPatientFullName() + "\nHora: " + appointment.getStartTime().toLocalTime()
         );
 
@@ -470,9 +470,9 @@ public class AppointmentCalendarController implements Initializable {
 
     private void handleCancelAppointment(AppointmentResponseDto appointment) {
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Cancelar Cita M?dica");
-        dialog.setHeaderText("Cancelaci?n de cita para " + appointment.getPatientFullName());
-        dialog.setContentText("Motivo de la cancelaci?n *:");
+        dialog.setTitle("Cancelar Cita Médica");
+        dialog.setHeaderText("Cancelación de cita para " + appointment.getPatientFullName());
+        dialog.setContentText("Motivo de la cancelación *:");
 
         Optional<String> result = dialog.showAndWait();
         if (result.isEmpty() || result.get().isBlank()) {
@@ -504,7 +504,7 @@ public class AppointmentCalendarController implements Initializable {
     private void openMedicalRecord(Long patientId) {
         if (userSession.isRecepcion()) {
             notificationService.showWarning("Acceso Restringido",
-                    "El perfil de Recepci?n no tiene permisos para acceder al expediente cl?nico detallado");
+                    "El perfil de Recepción no tiene permisos para acceder al expediente clínico detallado");
             return;
         }
         navigationService.setParameter("patientId", patientId);

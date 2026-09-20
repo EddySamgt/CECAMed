@@ -21,6 +21,9 @@ public interface PatientRepository extends JpaRepository<Patient, Long>, JpaSpec
 
     boolean existsByIdentificationNumberAndIdNot(String identificationNumber, Long id);
 
+    boolean existsByNormalizedFirstNameAndNormalizedLastNameAndBirthDateAndIdNot(
+            String firstName, String lastName, java.time.LocalDate birthDate, Long excludedId);
+
     List<Patient> findAllByActiveTrueOrderByLastNameAscFirstNameAsc();
 
     @Query("""
@@ -29,7 +32,6 @@ public interface PatientRepository extends JpaRepository<Patient, Long>, JpaSpec
           AND (
             LOWER(p.firstName) LIKE LOWER(CONCAT('%', :term, '%'))
             OR LOWER(p.lastName) LIKE LOWER(CONCAT('%', :term, '%'))
-            OR LOWER(p.identificationNumber) LIKE LOWER(CONCAT('%', :term, '%'))
             OR LOWER(p.phone) LIKE LOWER(CONCAT('%', :term, '%'))
           )
         ORDER BY p.lastName ASC, p.firstName ASC
@@ -41,7 +43,6 @@ public interface PatientRepository extends JpaRepository<Patient, Long>, JpaSpec
         WHERE (
             LOWER(p.firstName) LIKE LOWER(CONCAT('%', :term, '%'))
             OR LOWER(p.lastName) LIKE LOWER(CONCAT('%', :term, '%'))
-            OR LOWER(p.identificationNumber) LIKE LOWER(CONCAT('%', :term, '%'))
             OR LOWER(p.phone) LIKE LOWER(CONCAT('%', :term, '%'))
           )
     """)

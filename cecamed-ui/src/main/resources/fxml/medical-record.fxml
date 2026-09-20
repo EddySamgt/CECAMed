@@ -54,7 +54,6 @@
                     <Label fx:id="bloodTypeBadge" styleClass="status-badge, badge-info" text="Grupo: --"/>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" spacing="16.0">
-                    <Label fx:id="patientDniLabel" styleClass="page-subtitle" style="-fx-font-weight: bold;" text="DNI: --"/>
                     <Label fx:id="patientAgeLabel" styleClass="page-subtitle" text="Edad: --"/>
                     <Label fx:id="patientRecordNumberLabel" styleClass="page-subtitle" style="-fx-text-fill: #D32F2F; -fx-font-weight: bold;" text="Expediente: --"/>
                 </HBox>
@@ -77,7 +76,7 @@
     <TabPane fx:id="recordTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
 
         <!-- TAB 1: Antecedentes Clínicos -->
-        <Tab text="Antecedentes y Ficha Médica">
+        <Tab text="Antecedentes patológicos">
             <graphic>
                 <FontIcon iconLiteral="fth-file-text" iconSize="15"/>
             </graphic>
@@ -113,10 +112,9 @@
                             <TextArea fx:id="pathologicalHistoryArea" prefRowCount="3" promptText="Enfermedades crónicas: HTA, Diabetes, Asma..."/>
                         </VBox>
 
-                        <!-- Antecedentes No Patológicos -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <Label styleClass="form-field-label" text="Antecedentes No Patológicos (Estilo de Vida)"/>
-                            <TextArea fx:id="nonPathologicalHistoryArea" prefRowCount="3" promptText="Horas de sueño, agua, tabaquismo, alcohol, actividad física..."/>
+                            <Label styleClass="form-field-label" text="Antecedentes ginecoobstétricos"/>
+                            <TextArea fx:id="gynecologicalObstetricHistoryArea" prefRowCount="3" wrapText="true" promptText="Menstruación, embarazos, partos, cesáreas, abortos..."/>
                         </VBox>
 
                         <!-- Antecedentes Familiares -->
@@ -149,8 +147,37 @@
             </ScrollPane>
         </Tab>
 
+        <Tab text="Antecedentes no patológicos">
+            <graphic>
+                <FontIcon iconLiteral="fth-heart" iconSize="15"/>
+            </graphic>
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                <VBox spacing="16.0" style="-fx-padding: 16 0 16 0;">
+                    <VBox spacing="6.0" styleClass="cecamed-card">
+                        <Label styleClass="form-field-label" text="Hábitos o manías"/>
+                        <TextArea fx:id="nonPathologicalHistoryArea" prefRowCount="4" wrapText="true" promptText="Sueño, tabaquismo, alcohol, actividad física y otros hábitos..."/>
+                    </VBox>
+                    <HBox spacing="16.0">
+                        <VBox spacing="6.0" styleClass="cecamed-card" HBox.hgrow="ALWAYS">
+                            <Label styleClass="form-field-label" text="Vasos de agua al día"/>
+                            <TextField fx:id="waterGlassesPerDayField" promptText="Ej. 8"/>
+                        </VBox>
+                        <VBox spacing="6.0" styleClass="cecamed-card" HBox.hgrow="ALWAYS">
+                            <Label styleClass="form-field-label" text="Comidas al día"/>
+                            <TextField fx:id="mealsPerDayField" promptText="Ej. 3"/>
+                        </VBox>
+                    </HBox>
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button fx:id="saveNonPathologicalRecordButton" onAction="#handleSaveMedicalRecord" styleClass="primary-button" text="Guardar Antecedentes">
+                            <graphic><FontIcon iconColor="WHITE" iconLiteral="fth-save" iconSize="16"/></graphic>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
         <!-- TAB 2: Historial de Consultas & Somatometría -->
-        <Tab text="Consultas &amp; Somatometría">
+        <Tab fx:id="tabConsultationHistory" text="Consultas &amp; Somatometría">
             <graphic>
                 <FontIcon iconLiteral="fth-clipboard" iconSize="15"/>
             </graphic>

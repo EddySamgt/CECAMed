@@ -371,8 +371,7 @@ public class ReceptionController implements Initializable {
                     }
                     if (!term.isBlank()) {
                         String patient = a.getPatientFullName() != null ? a.getPatientFullName().toLowerCase() : "";
-                        String dni = a.getPatientIdentificationNumber() != null ? a.getPatientIdentificationNumber().toLowerCase() : "";
-                        return patient.contains(term) || dni.contains(term);
+                        return patient.contains(term);
                     }
                     return true;
                 })

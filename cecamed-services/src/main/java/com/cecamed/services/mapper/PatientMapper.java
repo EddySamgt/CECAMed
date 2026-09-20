@@ -16,7 +16,6 @@ public class PatientMapper {
         return Patient.builder()
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
-                .identificationNumber(dto.getIdentificationNumber())
                 .birthDate(dto.getBirthDate())
                 .gender(dto.getGender())
                 .bloodType(dto.getBloodType())
@@ -36,7 +35,6 @@ public class PatientMapper {
 
         patient.setFirstName(dto.getFirstName());
         patient.setLastName(dto.getLastName());
-        patient.setIdentificationNumber(dto.getIdentificationNumber());
         patient.setBirthDate(dto.getBirthDate());
         patient.setGender(dto.getGender());
         if (dto.getBloodType() != null) {
@@ -85,6 +83,9 @@ public class PatientMapper {
                 .id(record.getId())
                 .patientId(record.getPatient() != null ? record.getPatient().getId() : null)
                 .recordNumber(record.getRecordNumber())
+                .gynecologicalObstetricHistory(record.getGynecologicalObstetricHistory())
+                .waterGlassesPerDay(record.getWaterGlassesPerDay())
+                .mealsPerDay(record.getMealsPerDay())
                 .allergies(record.getAllergies())
                 .pathologicalHistory(record.getPathologicalHistory())
                 .nonPathologicalHistory(record.getNonPathologicalHistory())
@@ -100,6 +101,9 @@ public class PatientMapper {
     public void updateRecordFromDto(MedicalRecordDto dto, MedicalRecord record) {
         if (dto == null || record == null) return;
 
+        record.setGynecologicalObstetricHistory(dto.getGynecologicalObstetricHistory());
+        record.setWaterGlassesPerDay(dto.getWaterGlassesPerDay());
+        record.setMealsPerDay(dto.getMealsPerDay());
         record.setAllergies(dto.getAllergies());
         record.setPathologicalHistory(dto.getPathologicalHistory());
         record.setNonPathologicalHistory(dto.getNonPathologicalHistory());

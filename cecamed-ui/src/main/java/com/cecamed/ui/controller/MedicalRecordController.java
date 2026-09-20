@@ -57,7 +57,6 @@ public class MedicalRecordController implements Initializable {
 
     // Header Patient Info
     @FXML private Label patientNameLabel;
-    @FXML private Label patientDniLabel;
     @FXML private Label patientAgeLabel;
     @FXML private Label patientRecordNumberLabel;
     @FXML private Label bloodTypeBadge;
@@ -68,7 +67,13 @@ public class MedicalRecordController implements Initializable {
     @FXML private TabPane recordTabPane;
     @FXML private Tab tabNewConsultation;
 
-    // Tab 1: Antecedentes
+    @FXML private Tab tabConsultationHistory;
+    @FXML private TextArea gynecologicalObstetricHistoryArea;
+    @FXML private TextField waterGlassesPerDayField;
+    @FXML private TextField mealsPerDayField;
+    @FXML private Button saveNonPathologicalRecordButton;
+
+    // Antecedentes
     @FXML private TextArea allergiesArea;
     @FXML private TextArea currentMedicationsArea;
     @FXML private TextArea pathologicalHistoryArea;
@@ -140,6 +145,7 @@ public class MedicalRecordController implements Initializable {
         setupConsultationTable();
         setupAppointmentsTable();
         setupPatientSelector();
+        saveNonPathologicalRecordButton.disableProperty().bind(saveRecordButton.disableProperty());
 
         if (userSession.isRecepcion()) {
             tabNewConsultation.setDisable(true);
@@ -160,14 +166,14 @@ public class MedicalRecordController implements Initializable {
             @Override
             protected void updateItem(PatientResponseDto item, boolean empty) {
                 super.updateItem(item, empty);
-                setText(empty || item == null ? null : item.getFullName() + " (" + item.getIdentificationNumber() + ")");
+                setText(empty || item == null ? null : item.getFullName() + " (" + ("Exp.: " + item.getMedicalRecordNumber()) + ")");
             }
         });
         patientSelectorComboBox.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(PatientResponseDto item, boolean empty) {
                 super.updateItem(item, empty);
-                setText(empty || item == null ? null : item.getFullName() + " (" + item.getIdentificationNumber() + ")");
+                setText(empty || item == null ? null : item.getFullName() + " (" + ("Exp.: " + item.getMedicalRecordNumber()) + ")");
             }
         });
 
@@ -295,7 +301,6 @@ public class MedicalRecordController implements Initializable {
 
     private void renderPatientHeader(PatientResponseDto patient, MedicalRecordDto record) {
         patientNameLabel.setText(patient.getFullName());
-        patientDniLabel.setText("DNI: " + patient.getIdentificationNumber());
         patientAgeLabel.setText("Edad: " + (patient.getAge() != null ? patient.getAge() + " anios" : "--") +
                 " ? Sexo: " + (patient.getGender() == Gender.MASCULINO ? "Masculino" : patient.getGender() == Gender.FEMENINO ? "Femenino" : "Otro"));
         patientRecordNumberLabel.setText("Expediente: " + (patient.getMedicalRecordNumber() != null ? patient.getMedicalRecordNumber() : "--"));
@@ -312,6 +317,9 @@ public class MedicalRecordController implements Initializable {
             clearRecordFields();
             return;
         }
+        gynecologicalObstetricHistoryArea.setText(record.getGynecologicalObstetricHistory());
+        waterGlassesPerDayField.setText(record.getWaterGlassesPerDay() == null ? "" : record.getWaterGlassesPerDay().toString());
+        mealsPerDayField.setText(record.getMealsPerDay() == null ? "" : record.getMealsPerDay().toString());
         allergiesArea.setText(record.getAllergies());
         currentMedicationsArea.setText(record.getCurrentMedications());
         pathologicalHistoryArea.setText(record.getPathologicalHistory());
@@ -322,6 +330,9 @@ public class MedicalRecordController implements Initializable {
     }
 
     private void clearRecordFields() {
+        gynecologicalObstetricHistoryArea.clear();
+        waterGlassesPerDayField.clear();
+        mealsPerDayField.clear();
         allergiesArea.clear();
         currentMedicationsArea.clear();
         pathologicalHistoryArea.clear();
@@ -387,6 +398,13 @@ public class MedicalRecordController implements Initializable {
         newConsultationPrivateNotesArea.clear();
     }
 
+    private Integer parseDailyCount(String text) {
+        if (text == null || text.isBlank()) return null;
+        int value = Integer.parseInt(text.trim());
+        if (value < 0) throw new NumberFormatException();
+        return value;
+    }
+
     @FXML
     public void handleSaveMedicalRecord(ActionEvent event) {
         if (currentPatientId == null) {
@@ -394,7 +412,20 @@ public class MedicalRecordController implements Initializable {
             return;
         }
 
+        Integer waterGlasses;
+        Integer meals;
+        try {
+            waterGlasses = parseDailyCount(waterGlassesPerDayField.getText());
+            meals = parseDailyCount(mealsPerDayField.getText());
+        } catch (NumberFormatException ex) {
+            notificationService.showWarning("Datos inválidos", "Los vasos de agua y las comidas al día deben ser números enteros mayores o iguales a cero, o quedar vacíos.");
+            return;
+        }
+
         MedicalRecordDto dto = MedicalRecordDto.builder()
+                .gynecologicalObstetricHistory(gynecologicalObstetricHistoryArea.getText() == null ? null : gynecologicalObstetricHistoryArea.getText().trim())
+                .waterGlassesPerDay(waterGlasses)
+                .mealsPerDay(meals)
                 .patientId(currentPatientId)
                 .recordNumber(currentPatient.getMedicalRecordNumber())
                 .allergies(allergiesArea.getText() != null ? allergiesArea.getText().trim() : null)
@@ -496,7 +527,7 @@ public class MedicalRecordController implements Initializable {
             consultationsList.add(0, created);
             consultationsTable.getSelectionModel().select(created);
             initNewConsultationFormDefaults();
-            recordTabPane.getSelectionModel().select(1); // Cambiar a pestaña de Historial
+            recordTabPane.getSelectionModel().select(tabConsultationHistory); // Cambiar a pestaña de Historial
         });
 
         task.setOnFailed(e -> {

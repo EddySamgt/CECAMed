@@ -57,41 +57,35 @@
                                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
                             </columnConstraints>
 
-                            <!-- DNI -->
-                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Identificación / DNI *"/>
-                                <TextField fx:id="dniField" promptText="ej. 0801199512345"/>
-                            </VBox>
-
-                            <!-- Tipo de Sangre -->
-                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                <Label styleClass="form-field-label" text="Tipo de Sangre"/>
-                                <ComboBox fx:id="bloodTypeComboBox" maxWidth="Infinity" promptText="Seleccionar..."/>
-                            </VBox>
-
                             <!-- Nombres -->
-                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                 <Label styleClass="form-field-label" text="Nombres *"/>
                                 <TextField fx:id="firstNameField" promptText="ej. Juan Carlos"/>
                             </VBox>
 
                             <!-- Apellidos -->
-                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                 <Label styleClass="form-field-label" text="Apellidos *"/>
                                 <TextField fx:id="lastNameField" promptText="ej. Pérez Gómez"/>
                             </VBox>
 
                             <!-- Fecha Nacimiento -->
-                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                 <Label styleClass="form-field-label" text="Fecha de Nacimiento *"/>
                                 <DatePicker fx:id="birthDatePicker" maxWidth="Infinity" promptText="DD/MM/AAAA"/>
                             </VBox>
 
                             <!-- Género -->
-                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                 <Label styleClass="form-field-label" text="Género / Sexo *"/>
                                 <ComboBox fx:id="genderComboBox" maxWidth="Infinity" promptText="Seleccionar género"/>
                             </VBox>
+                            <!-- Tipo de Sangre -->
+                            <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                <Label styleClass="form-field-label" text="Tipo de Sangre"/>
+                                <ComboBox fx:id="bloodTypeComboBox" maxWidth="Infinity" promptText="Seleccionar..."/>
+                            </VBox>
+
                         </GridPane>
                     </VBox>
 

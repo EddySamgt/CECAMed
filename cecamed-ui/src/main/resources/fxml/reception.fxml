@@ -65,7 +65,7 @@
                 <Region HBox.hgrow="ALWAYS"/>
 
                 <StackPane alignment="CENTER_RIGHT">
-                    <TextField fx:id="searchField" prefWidth="210.0" promptText="Buscar paciente o DNI..." style="-fx-padding: 6 12 6 28;"/>
+                    <TextField fx:id="searchField" prefWidth="210.0" promptText="Buscar paciente..." style="-fx-padding: 6 12 6 28;"/>
                     <FontIcon iconColor="#94A3B8" iconLiteral="fth-search" iconSize="14" StackPane.alignment="CENTER_LEFT">
                         <StackPane.margin>
                             <Insets left="8.0"/>

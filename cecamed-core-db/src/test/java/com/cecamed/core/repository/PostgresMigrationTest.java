@@ -59,4 +59,54 @@ class PostgresMigrationTest {
         assertThat(blocks.findOverlappingBlocks(day, day.plusDays(1)))
                 .extracting(ScheduleBlock::getId).contains(block.getId());
     }
+    @Test
+    void persistsMultiplePatientsWithoutIdentification() {
+        Patient first = patients.saveAndFlush(Patient.builder().firstName("Ana").lastName("Sin DNI")
+                .birthDate(LocalDate.of(1990, 1, 1)).gender(Gender.FEMENINO).build());
+        Patient second = patients.saveAndFlush(Patient.builder().firstName("Luis").lastName("Sin DNI")
+                .birthDate(LocalDate.of(1991, 1, 1)).gender(Gender.MASCULINO).build());
+        assertThat(first.getId()).isNotEqualTo(second.getId());
+        assertThat(first.getIdentificationNumber()).isNull();
+        assertThat(second.getIdentificationNumber()).isNull();
+        assertThat(patients.searchActivePatients("Sin DNI")).extracting(Patient::getId)
+                .contains(first.getId(), second.getId());
+    }
+
+    @Autowired org.springframework.jdbc.core.JdbcTemplate jdbc;
+
+    @Test
+    void databaseRejectsDuplicateEvenWhenInactiveAndInsertedWithoutJpa() {
+        Patient original = patients.saveAndFlush(Patient.builder().firstName("  María   José ")
+                .lastName("LÓPEZ").birthDate(LocalDate.of(1980, 1, 2))
+                .gender(Gender.FEMENINO).active(false).build());
+        assertThat(patients.existsByNormalizedFirstNameAndNormalizedLastNameAndBirthDateAndIdNot(
+                "maria jose", "lopez", original.getBirthDate(), -1L)).isTrue();
+        assertThat(patients.existsByNormalizedFirstNameAndNormalizedLastNameAndBirthDateAndIdNot(
+                "maria jose", "lopez", original.getBirthDate(), original.getId())).isFalse();
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> jdbc.update(
+                "INSERT INTO patients(first_name,last_name,birth_date,gender) VALUES (?,?,?,?)",
+                "maria jose", "lopez", original.getBirthDate(), "FEMENINO"))
+                .isInstanceOf(org.springframework.dao.DuplicateKeyException.class);
+    }
+
+    @Test
+    void allowsSameNameWithDifferentBirthDate() {
+        for (int day : new int[]{1, 2}) {
+            patients.saveAndFlush(Patient.builder().firstName("Ana").lastName("Pérez")
+                    .birthDate(LocalDate.of(1980, 1, day)).gender(Gender.FEMENINO).build());
+        }
+        assertThat(patients.searchActivePatients("Ana")).hasSize(2);
+    }
+
+    @Test
+    void databaseRejectsUpdateIntoExistingPatient() {
+        Patient first = patients.saveAndFlush(Patient.builder().firstName("Ana").lastName("López")
+                .birthDate(LocalDate.of(1980, 1, 2)).gender(Gender.FEMENINO).build());
+        Patient second = patients.saveAndFlush(Patient.builder().firstName("Luisa").lastName("López")
+                .birthDate(first.getBirthDate()).gender(Gender.FEMENINO).build());
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> jdbc.update(
+                "UPDATE patients SET first_name = ? WHERE id = ?", " ANA ", second.getId()))
+                .isInstanceOf(org.springframework.dao.DuplicateKeyException.class);
+    }
+
 }

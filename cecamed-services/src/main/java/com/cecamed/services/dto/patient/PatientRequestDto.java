@@ -30,10 +30,6 @@ public class PatientRequestDto {
     @Size(max = 100, message = "El apellido no puede exceder 100 caracteres")
     private String lastName;
 
-    @NotBlank(message = "La identificación/DNI es obligatoria")
-    @Size(max = 50, message = "La identificación no puede exceder 50 caracteres")
-    private String identificationNumber;
-
     @NotNull(message = "La fecha de nacimiento es obligatoria")
     @Past(message = "La fecha de nacimiento debe ser en el pasado")
     private LocalDate birthDate;

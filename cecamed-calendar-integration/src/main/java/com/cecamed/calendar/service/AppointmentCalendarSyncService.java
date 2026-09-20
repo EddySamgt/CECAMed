@@ -259,7 +259,6 @@ public class AppointmentCalendarSyncService {
 
     private CalendarEventDto buildEventDtoFromAppointment(Appointment appointment) {
         String patientName = appointment.getPatient() != null ? appointment.getPatient().getFullName() : "Paciente";
-        String patientDni = appointment.getPatient() != null ? appointment.getPatient().getIdentificationNumber() : "N/A";
         String patientPhone = appointment.getPatient() != null ? appointment.getPatient().getPhone() : "N/A";
         String patientEmail = appointment.getPatient() != null ? appointment.getPatient().getEmail() : null;
 
@@ -269,7 +268,6 @@ public class AppointmentCalendarSyncService {
         description.append("--- FICHA DE CITA MÉDICA (CECAMed) ---\n")
                 .append("ID Cita: ").append(appointment.getId()).append("\n")
                 .append("Paciente: ").append(patientName).append("\n")
-                .append("Identificación: ").append(patientDni).append("\n")
                 .append("Teléfono de contacto: ").append(patientPhone).append("\n")
                 .append("Motivo de consulta: ").append(appointment.getReasonForVisit()).append("\n")
                 .append("Estado: ").append(appointment.getStatus()).append("\n");

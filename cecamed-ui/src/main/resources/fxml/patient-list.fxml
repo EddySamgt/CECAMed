@@ -49,7 +49,7 @@
         <HBox alignment="CENTER_LEFT" spacing="14.0">
             <!-- Search Bar with clear button inside -->
             <StackPane alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                <TextField fx:id="searchField" promptText="Buscar paciente por DNI, nombres o apellidos..." style="-fx-padding: 8 32 8 36;"/>
+                <TextField fx:id="searchField" promptText="Buscar por nombres, apellidos o teléfono..." style="-fx-padding: 8 32 8 36;"/>
                 <FontIcon iconColor="#94A3B8" iconLiteral="fth-search" iconSize="16" StackPane.alignment="CENTER_LEFT">
                     <StackPane.margin>
                         <Insets left="12.0"/>
@@ -85,7 +85,6 @@
     <VBox spacing="8.0" styleClass="cecamed-card" VBox.vgrow="ALWAYS">
         <TableView fx:id="patientsTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colDni" minWidth="110.0" prefWidth="120.0" text="Identificación / DNI"/>
                 <TableColumn fx:id="colName" minWidth="180.0" prefWidth="220.0" text="Paciente"/>
                 <TableColumn fx:id="colAge" minWidth="120.0" prefWidth="140.0" text="Edad (Nacimiento)"/>
                 <TableColumn fx:id="colGender" minWidth="50.0" prefWidth="60.0" text="Sexo"/>

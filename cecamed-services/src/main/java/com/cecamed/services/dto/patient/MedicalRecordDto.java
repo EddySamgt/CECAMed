@@ -34,6 +34,14 @@ public class MedicalRecordDto {
     private String currentMedications;
     private String generalObservations;
 
+    private String gynecologicalObstetricHistory;
+
+    @jakarta.validation.constraints.PositiveOrZero
+    private Integer waterGlassesPerDay;
+
+    @jakarta.validation.constraints.PositiveOrZero
+    private Integer mealsPerDay;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

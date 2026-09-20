@@ -39,6 +39,8 @@ import java.util.Objects;
 @Entity
 @Table(
     name = "patients",
+    uniqueConstraints = @jakarta.persistence.UniqueConstraint(name = "uk_patient_identity",
+            columnNames = {"normalized_first_name", "normalized_last_name", "birth_date"}),
     indexes = {
         @Index(name = "idx_patient_dni", columnList = "identification_number", unique = true),
         @Index(name = "idx_patient_names", columnList = "last_name, first_name"),
@@ -68,9 +70,8 @@ public class Patient extends AuditableEntity {
     @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
 
-    @NotBlank(message = "La identificación/DNI es obligatoria")
     @Size(max = 50, message = "La identificación no puede exceder 50 caracteres")
-    @Column(name = "identification_number", nullable = false, unique = true, length = 50)
+    @Column(name = "identification_number", unique = true, length = 50)
     private String identificationNumber;
 
     @NotNull(message = "La fecha de nacimiento es obligatoria")
@@ -139,6 +140,19 @@ public class Patient extends AuditableEntity {
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @OrderBy("startTime DESC")
     private List<Appointment> appointments = new ArrayList<>();
+
+    @Column(name = "normalized_first_name", nullable = false, length = 100)
+    private String normalizedFirstName;
+
+    @Column(name = "normalized_last_name", nullable = false, length = 100)
+    private String normalizedLastName;
+
+    @jakarta.persistence.PrePersist
+    @jakarta.persistence.PreUpdate
+    private void normalizeIdentity() {
+        normalizedFirstName = PatientIdentity.normalizeName(firstName);
+        normalizedLastName = PatientIdentity.normalizeName(lastName);
+    }
 
     // Métodos utilitarios
     public String getFullName() {

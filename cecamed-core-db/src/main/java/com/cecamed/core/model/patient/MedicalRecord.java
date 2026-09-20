@@ -77,6 +77,17 @@ public class MedicalRecord extends AuditableEntity {
     @Column(name = "general_observations", columnDefinition = "TEXT")
     private String generalObservations;
 
+    @Column(name = "gynecological_obstetric_history", columnDefinition = "TEXT")
+    private String gynecologicalObstetricHistory;
+
+    @jakarta.validation.constraints.PositiveOrZero
+    @Column(name = "water_glasses_per_day")
+    private Integer waterGlassesPerDay;
+
+    @jakarta.validation.constraints.PositiveOrZero
+    @Column(name = "meals_per_day")
+    private Integer mealsPerDay;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

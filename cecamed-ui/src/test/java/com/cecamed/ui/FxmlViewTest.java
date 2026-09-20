@@ -66,7 +66,17 @@ class FxmlViewTest {
             var loader = new SpringFXMLLoader(context).createLoader("/fxml/" + view + ".fxml");
             Parent root = loader.load();
             assertNotNull(root);
+            if (view.equals("medical-record")) {
+                var tabs = (javafx.scene.control.TabPane) loader.getNamespace().get("recordTabPane");
+                assertEquals("Antecedentes patológicos", tabs.getTabs().get(0).getText());
+                assertEquals("Antecedentes no patológicos", tabs.getTabs().get(1).getText());
+                assertNotNull(((javafx.scene.control.ScrollPane) tabs.getTabs().get(0).getContent()).getContent().lookup("#gynecologicalObstetricHistoryArea"));
+                for (String field : new String[]{"nonPathologicalHistoryArea", "waterGlassesPerDayField", "mealsPerDayField"}) {
+                    assertNotNull(((javafx.scene.control.ScrollPane) tabs.getTabs().get(1).getContent()).getContent().lookup("#" + field));
+                }
+            }
             if (view.equals("patient-form-dialog")) {
+                assertFalse(loader.getNamespace().containsKey("dniField"));
                 TextField lastName = (TextField) loader.getNamespace().get("lastNameField");
                 assertEquals("ej. Pérez Gómez", lastName.getPromptText());
                 lastName.setText("Muñoz Agüero");

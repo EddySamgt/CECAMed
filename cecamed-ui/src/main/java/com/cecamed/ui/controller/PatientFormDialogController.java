@@ -32,7 +32,6 @@ public class PatientFormDialogController implements Initializable {
     private final NotificationService notificationService;
 
     @FXML private Label dialogTitleLabel;
-    @FXML private TextField dniField;
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
     @FXML private DatePicker birthDatePicker;
@@ -114,7 +113,6 @@ public class PatientFormDialogController implements Initializable {
         dialogTitleLabel.setText("Editar Paciente: " + patient.getFullName());
         saveButton.setText("Actualizar Datos");
 
-        dniField.setText(patient.getIdentificationNumber());
         firstNameField.setText(patient.getFirstName());
         lastNameField.setText(patient.getLastName());
         birthDatePicker.setValue(patient.getBirthDate());
@@ -136,7 +134,6 @@ public class PatientFormDialogController implements Initializable {
         }
 
         PatientRequestDto requestDto = PatientRequestDto.builder()
-                .identificationNumber(dniField.getText().trim())
                 .firstName(firstNameField.getText().trim())
                 .lastName(lastNameField.getText().trim())
                 .birthDate(birthDatePicker.getValue())
@@ -204,11 +201,6 @@ public class PatientFormDialogController implements Initializable {
     }
 
     private boolean validateInputs() {
-        if (dniField.getText() == null || dniField.getText().isBlank()) {
-            showError("La identificacion o DNI es obligatoria");
-            dniField.requestFocus();
-            return false;
-        }
         if (firstNameField.getText() == null || firstNameField.getText().isBlank()) {
             showError("El nombre del paciente es obligatorio");
             firstNameField.requestFocus();
@@ -246,7 +238,6 @@ public class PatientFormDialogController implements Initializable {
     }
 
     private void clearForm() {
-        dniField.clear();
         firstNameField.clear();
         lastNameField.clear();
         birthDatePicker.setValue(null);
@@ -276,7 +267,6 @@ public class PatientFormDialogController implements Initializable {
         return switch (gender) {
             case MASCULINO -> "Masculino";
             case FEMENINO -> "Femenino";
-            case OTRO -> "Otro";
         };
     }
 

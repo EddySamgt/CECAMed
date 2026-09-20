@@ -34,16 +34,10 @@ public class PatientServiceImpl implements PatientService {
     @Override
     @Transactional
     public PatientResponseDto createPatient(PatientRequestDto requestDto) {
-        log.info("Creando nuevo paciente con DNI/identificación: {}", requestDto.getIdentificationNumber());
-
-        if (patientRepository.existsByIdentificationNumber(requestDto.getIdentificationNumber())) {
-            throw new BusinessRuleException(
-                    "Ya existe un paciente registrado con el número de identificación: " + requestDto.getIdentificationNumber()
-            );
-        }
+        log.info("Creando nuevo paciente");
+        validateUniquePatient(requestDto, -1L);
 
         Patient patient = patientMapper.toEntity(requestDto);
-
         // Generación automática del expediente clínico inicial vinculado
         String generatedRecordNumber = generateUniqueRecordNumber();
         MedicalRecord record = MedicalRecord.builder()
@@ -51,7 +45,7 @@ public class PatientServiceImpl implements PatientService {
                 .build();
         patient.setMedicalRecord(record);
 
-        Patient saved = patientRepository.save(patient);
+        Patient saved = savePatient(patient);
         log.info("Paciente creado con ID: {} y Expediente: {}", saved.getId(), generatedRecordNumber);
 
         return patientMapper.toResponseDto(saved);
@@ -65,14 +59,10 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Paciente", "id", id));
 
-        if (patientRepository.existsByIdentificationNumberAndIdNot(requestDto.getIdentificationNumber(), id)) {
-            throw new BusinessRuleException(
-                    "El número de identificación " + requestDto.getIdentificationNumber() + " ya está en uso por otro paciente"
-            );
-        }
+        validateUniquePatient(requestDto, id);
 
         patientMapper.updateEntityFromDto(requestDto, patient);
-        Patient updated = patientRepository.save(patient);
+        Patient updated = savePatient(patient);
 
         return patientMapper.toResponseDto(updated);
     }
@@ -86,7 +76,10 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientResponseDto getPatientByIdentification(String identificationNumber) {
-        return patientRepository.findByIdentificationNumber(identificationNumber)
+        if (identificationNumber == null || identificationNumber.isBlank()) {
+            throw new ResourceNotFoundException("Paciente", "identificationNumber", identificationNumber);
+        }
+        return patientRepository.findByIdentificationNumber(identificationNumber.trim())
                 .map(patientMapper::toResponseDto)
                 .orElseThrow(() -> new ResourceNotFoundException("Paciente", "identificationNumber", identificationNumber));
     }
@@ -121,7 +114,7 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Paciente", "id", id));
         patient.setActive(false);
-        patientRepository.save(patient);
+        savePatient(patient);
         log.info("Paciente con ID {} desactivado", id);
     }
 
@@ -131,8 +124,35 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Paciente", "id", id));
         patient.setActive(true);
-        patientRepository.save(patient);
+        savePatient(patient);
         log.info("Paciente con ID {} reactivado", id);
+    }
+
+    private static final String DUPLICATE_PATIENT =
+            "Ya existe un paciente con los mismos nombres, apellidos y fecha de nacimiento. "
+            + "Revise el registro existente, incluidos los pacientes inactivos.";
+
+    private void validateUniquePatient(PatientRequestDto request, Long excludedId) {
+        if (patientRepository.existsByNormalizedFirstNameAndNormalizedLastNameAndBirthDateAndIdNot(
+                com.cecamed.core.model.patient.PatientIdentity.normalizeName(request.getFirstName()),
+                com.cecamed.core.model.patient.PatientIdentity.normalizeName(request.getLastName()),
+                request.getBirthDate(), excludedId)) {
+            throw new BusinessRuleException(DUPLICATE_PATIENT);
+        }
+    }
+
+    private Patient savePatient(Patient patient) {
+        try {
+            return patientRepository.saveAndFlush(patient);
+        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+            for (Throwable cause = ex; cause != null; cause = cause.getCause()) {
+                if (cause instanceof org.hibernate.exception.ConstraintViolationException violation
+                        && "uk_patient_identity".equalsIgnoreCase(violation.getConstraintName())) {
+                    throw new BusinessRuleException(DUPLICATE_PATIENT);
+                }
+            }
+            throw ex;
+        }
     }
 
     private String generateUniqueRecordNumber() {

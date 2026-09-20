@@ -6,7 +6,8 @@ La interfaz está construida con JavaFX y utiliza Spring Boot para configurar lo
 
 ## Funcionalidades
 
-- Registro, búsqueda y actualización de pacientes.
+- Registro, búsqueda y actualización de pacientes sin solicitar DNI/identificación.
+- Prevención de duplicados por nombres, apellidos y fecha de nacimiento, incluidos pacientes inactivos. Se ignoran mayúsculas, tildes y diferencias de espacios; la restricción también se aplica en PostgreSQL para evitar registros simultáneos duplicados.
 - Expedientes clínicos, consultas y signos vitales.
 - Gestión de documentos adjuntos en PDF, PNG y JPEG.
 - Agenda de citas, reprogramación, cancelación y validación de disponibilidad.
@@ -210,6 +211,7 @@ Si la integración está habilitada pero el cliente no puede inicializarse, las 
 - **Base de datos:** PostgreSQL almacena pacientes, expedientes, consultas, citas, horarios, bloqueos, inventario y metadatos de documentos.
 - **Adjuntos:** los archivos se guardan en el directorio configurado con `CECAMED_STORAGE_UPLOAD_DIR`. Por defecto se permiten `.pdf`, `.png`, `.jpg` y `.jpeg`, con un máximo de 15 MiB por archivo. El almacenamiento genera nombres únicos y calcula una suma SHA-256.
 - **Migraciones:** están en `cecamed-core-db/src/main/resources/db/migration/`. Para evolucionar el esquema, añade una migración versionada, por ejemplo `V3__descripcion.sql`, en lugar de modificar una migración ya aplicada.
+- **Pacientes duplicados existentes:** la migración de unicidad se detiene si encuentra coincidencias en nombres, apellidos y fecha de nacimiento. Revisa esos expedientes antes de volver a iniciarla; no se borran ni fusionan automáticamente. Las identificaciones históricas se conservan internamente, pero ya no se solicitan ni se muestran.
 - **Respaldos:** conserva tanto la base de datos como el directorio de adjuntos; un respaldo de PostgreSQL no incluye los archivos físicos.
 - **Archivos locales:** `.env`, las credenciales de Google, los tokens y los adjuntos están excluidos de Git mediante `.gitignore`.
 

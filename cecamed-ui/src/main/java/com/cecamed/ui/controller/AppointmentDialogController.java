@@ -89,14 +89,14 @@ public class AppointmentDialogController implements Initializable {
             @Override
             protected void updateItem(PatientResponseDto item, boolean empty) {
                 super.updateItem(item, empty);
-                setText(empty || item == null ? null : item.getFullName() + " (" + item.getIdentificationNumber() + ")");
+                setText(empty || item == null ? null : item.getFullName() + " (" + ("Exp.: " + item.getMedicalRecordNumber()) + ")");
             }
         });
         patientComboBox.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(PatientResponseDto item, boolean empty) {
                 super.updateItem(item, empty);
-                setText(empty || item == null ? null : item.getFullName() + " (" + item.getIdentificationNumber() + ")");
+                setText(empty || item == null ? null : item.getFullName() + " (" + ("Exp.: " + item.getMedicalRecordNumber()) + ")");
             }
         });
     }

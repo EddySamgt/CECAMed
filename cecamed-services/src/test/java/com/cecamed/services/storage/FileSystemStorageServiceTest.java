@@ -160,8 +160,7 @@ class FileSystemStorageServiceTest {
         Path filePath = tempDir.resolve(metadata.getRelativePath());
         assertThat(Files.exists(filePath)).isTrue();
 
-        boolean deleted = storageService.delete(metadata.getRelativePath());
-        assertThat(deleted).isTrue();
+        storageService.delete(metadata.getRelativePath());
         assertThat(Files.exists(filePath)).isFalse();
     }
 

@@ -61,7 +61,6 @@ public class PatientListController implements Initializable {
     @FXML private ProgressIndicator loadingIndicator;
 
     @FXML private TableView<PatientResponseDto> patientsTable;
-    @FXML private TableColumn<PatientResponseDto, String> colDni;
     @FXML private TableColumn<PatientResponseDto, String> colName;
     @FXML private TableColumn<PatientResponseDto, String> colAge;
     @FXML private TableColumn<PatientResponseDto, Gender> colGender;
@@ -95,7 +94,6 @@ public class PatientListController implements Initializable {
     private void setupTableColumns() {
         DateTimeFormatter birthFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        colDni.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getIdentificationNumber()));
         colName.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getFullName()));
         
         colAge.setCellValueFactory(data -> {
@@ -385,7 +383,7 @@ public class PatientListController implements Initializable {
         boolean confirmed = ConfirmationDialog.confirm(
                 "Confirmar Operacion",
                 "Desea " + actionName + " al paciente?",
-                "Paciente: " + patient.getFullName() + " (" + patient.getIdentificationNumber() + ")"
+                "Paciente: " + patient.getFullName() + " (" + ("Exp.: " + patient.getMedicalRecordNumber()) + ")"
         );
 
         if (!confirmed) return;
@@ -431,7 +429,6 @@ public class PatientListController implements Initializable {
         return switch (g) {
             case MASCULINO -> "M";
             case FEMENINO -> "F";
-            case OTRO -> "Otro";
         };
     }
 

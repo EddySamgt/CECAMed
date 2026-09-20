@@ -9,7 +9,6 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +27,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Slf4j
-@Service
+// Available for explicit use; LocalFileStorageService is the application storage bean.
 public class FileSystemStorageService implements FileStorageService {
 
     private final Path rootLocation;
@@ -39,7 +38,6 @@ public class FileSystemStorageService implements FileStorageService {
         this.rootLocation = Paths.get(properties.getUploadDir()).toAbsolutePath().normalize();
     }
 
-    @Override
     @PostConstruct
     public void init() {
         try {
@@ -71,7 +69,6 @@ public class FileSystemStorageService implements FileStorageService {
         }
     }
 
-    @Override
     public StoredFileMetadata store(InputStream inputStream, String originalFilename, String contentType, long size, String subDirectory) {
         String cleanedFilename = StringUtils.cleanPath(originalFilename);
 
@@ -145,7 +142,7 @@ public class FileSystemStorageService implements FileStorageService {
     }
 
     @Override
-    public boolean delete(String relativePath) {
+    public void delete(String relativePath) {
         try {
             Path file = rootLocation.resolve(relativePath).normalize();
             if (!file.startsWith(rootLocation)) {
@@ -155,13 +152,11 @@ public class FileSystemStorageService implements FileStorageService {
             if (deleted) {
                 log.info("Archivo eliminado físicamente: {}", relativePath);
             }
-            return deleted;
         } catch (IOException e) {
             throw new FileStorageException("Error al eliminar el archivo físico: " + relativePath, e);
         }
     }
 
-    @Override
     public Path getRootLocation() {
         return rootLocation;
     }

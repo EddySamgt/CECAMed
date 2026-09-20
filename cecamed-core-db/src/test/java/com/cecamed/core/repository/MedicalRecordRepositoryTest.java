@@ -21,6 +21,9 @@ class MedicalRecordRepositoryTest {
     private MedicalRecordRepository medicalRecordRepository;
 
     @Autowired
+    private jakarta.persistence.EntityManager entityManager;
+
+    @Autowired
     private PatientRepository patientRepository;
 
     @Test
@@ -39,6 +42,10 @@ class MedicalRecordRepositoryTest {
                 .patient(savedPatient)
                 .recordNumber("EXP-2026-0001")
                 .allergies("Penicilina, Sulfas")
+                .gynecologicalObstetricHistory("Dos partos")
+                .nonPathologicalHistory("Camina diariamente")
+                .waterGlassesPerDay(8)
+                .mealsPerDay(3)
                 .pathologicalHistory("Hipertensión arterial controlada")
                 .surgicalHistory("Apendicectomía en 2015")
                 .currentMedications("Losartán 50mg cada 24h")
@@ -47,8 +54,15 @@ class MedicalRecordRepositoryTest {
         MedicalRecord savedRecord = medicalRecordRepository.save(record);
         assertThat(savedRecord.getId()).isNotNull();
 
+        medicalRecordRepository.flush();
+        entityManager.clear();
+
         Optional<MedicalRecord> foundByNumber = medicalRecordRepository.findByRecordNumber("EXP-2026-0001");
         assertThat(foundByNumber).isPresent();
+        assertThat(foundByNumber.get().getGynecologicalObstetricHistory()).isEqualTo("Dos partos");
+        assertThat(foundByNumber.get().getNonPathologicalHistory()).isEqualTo("Camina diariamente");
+        assertThat(foundByNumber.get().getWaterGlassesPerDay()).isEqualTo(8);
+        assertThat(foundByNumber.get().getMealsPerDay()).isEqualTo(3);
         assertThat(foundByNumber.get().getAllergies()).contains("Penicilina");
 
         Optional<MedicalRecord> foundByPatient = medicalRecordRepository.findByPatientId(savedPatient.getId());

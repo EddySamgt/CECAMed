@@ -43,6 +43,7 @@ class MedicalRecordRepositoryTest {
                 .recordNumber("EXP-2026-0001")
                 .allergies("Penicilina, Sulfas")
                 .gynecologicalObstetricHistory("Dos partos")
+                .traumaticHistory("Fractura de radio en 2020")
                 .nonPathologicalHistory("Camina diariamente")
                 .waterGlassesPerDay(8)
                 .mealsPerDay(3)
@@ -63,6 +64,7 @@ class MedicalRecordRepositoryTest {
         assertThat(foundByNumber.get().getNonPathologicalHistory()).isEqualTo("Camina diariamente");
         assertThat(foundByNumber.get().getWaterGlassesPerDay()).isEqualTo(8);
         assertThat(foundByNumber.get().getMealsPerDay()).isEqualTo(3);
+        assertThat(foundByNumber.get().getTraumaticHistory()).isEqualTo("Fractura de radio en 2020");
         assertThat(foundByNumber.get().getAllergies()).contains("Penicilina");
 
         Optional<MedicalRecord> foundByPatient = medicalRecordRepository.findByPatientId(savedPatient.getId());

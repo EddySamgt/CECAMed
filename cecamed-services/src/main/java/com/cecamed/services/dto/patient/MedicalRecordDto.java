@@ -31,6 +31,7 @@ public class MedicalRecordDto {
     private String nonPathologicalHistory;
     private String familyHistory;
     private String surgicalHistory;
+    private String traumaticHistory;
     private String currentMedications;
     private String generalObservations;
 

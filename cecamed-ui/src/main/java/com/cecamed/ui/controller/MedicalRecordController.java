@@ -80,6 +80,7 @@ public class MedicalRecordController implements Initializable {
     @FXML private TextArea nonPathologicalHistoryArea;
     @FXML private TextArea familyHistoryArea;
     @FXML private TextArea surgicalHistoryArea;
+    @FXML private TextArea traumaticHistoryArea;
     @FXML private TextArea generalObservationsArea;
     @FXML private Button saveRecordButton;
 
@@ -326,6 +327,7 @@ public class MedicalRecordController implements Initializable {
         nonPathologicalHistoryArea.setText(record.getNonPathologicalHistory());
         familyHistoryArea.setText(record.getFamilyHistory());
         surgicalHistoryArea.setText(record.getSurgicalHistory());
+        traumaticHistoryArea.setText(record.getTraumaticHistory());
         generalObservationsArea.setText(record.getGeneralObservations());
     }
 
@@ -339,6 +341,7 @@ public class MedicalRecordController implements Initializable {
         nonPathologicalHistoryArea.clear();
         familyHistoryArea.clear();
         surgicalHistoryArea.clear();
+        traumaticHistoryArea.clear();
         generalObservationsArea.clear();
     }
 
@@ -433,6 +436,7 @@ public class MedicalRecordController implements Initializable {
                 .pathologicalHistory(pathologicalHistoryArea.getText() != null ? pathologicalHistoryArea.getText().trim() : null)
                 .nonPathologicalHistory(nonPathologicalHistoryArea.getText() != null ? nonPathologicalHistoryArea.getText().trim() : null)
                 .familyHistory(familyHistoryArea.getText() != null ? familyHistoryArea.getText().trim() : null)
+                .traumaticHistory(traumaticHistoryArea.getText() != null ? traumaticHistoryArea.getText().trim() : null)
                 .surgicalHistory(surgicalHistoryArea.getText() != null ? surgicalHistoryArea.getText().trim() : null)
                 .generalObservations(generalObservationsArea.getText() != null ? generalObservationsArea.getText().trim() : null)
                 .build();

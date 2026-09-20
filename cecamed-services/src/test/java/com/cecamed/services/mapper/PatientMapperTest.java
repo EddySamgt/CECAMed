@@ -12,6 +12,7 @@ class PatientMapperTest {
         var record = new MedicalRecord();
         var dto = MedicalRecordDto.builder()
                 .gynecologicalObstetricHistory("Dos partos")
+                .traumaticHistory("Fractura de radio en 2020")
                 .nonPathologicalHistory("Camina diariamente")
                 .waterGlassesPerDay(0).mealsPerDay(3).build();
         mapper.updateRecordFromDto(dto, record);

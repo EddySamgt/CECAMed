@@ -70,7 +70,10 @@ class FxmlViewTest {
                 var tabs = (javafx.scene.control.TabPane) loader.getNamespace().get("recordTabPane");
                 assertEquals("Antecedentes patológicos", tabs.getTabs().get(0).getText());
                 assertEquals("Antecedentes no patológicos", tabs.getTabs().get(1).getText());
-                assertNotNull(((javafx.scene.control.ScrollPane) tabs.getTabs().get(0).getContent()).getContent().lookup("#gynecologicalObstetricHistoryArea"));
+                for (String field : new String[]{"familyHistoryArea", "surgicalHistoryArea", "pathologicalHistoryArea",
+                        "traumaticHistoryArea", "allergiesArea", "gynecologicalObstetricHistoryArea"}) {
+                    assertNotNull(((javafx.scene.control.ScrollPane) tabs.getTabs().get(0).getContent()).getContent().lookup("#" + field));
+                }
                 for (String field : new String[]{"nonPathologicalHistoryArea", "waterGlassesPerDayField", "mealsPerDayField"}) {
                     assertNotNull(((javafx.scene.control.ScrollPane) tabs.getTabs().get(1).getContent()).getContent().lookup("#" + field));
                 }

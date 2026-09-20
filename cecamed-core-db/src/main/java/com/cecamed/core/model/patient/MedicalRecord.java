@@ -71,6 +71,9 @@ public class MedicalRecord extends AuditableEntity {
     @Column(name = "surgical_history", columnDefinition = "TEXT")
     private String surgicalHistory; // Cirugías y hospitalizaciones previas
 
+    @Column(name = "traumatic_history", columnDefinition = "TEXT")
+    private String traumaticHistory;
+
     @Column(name = "current_medications", columnDefinition = "TEXT")
     private String currentMedications; // Medicación habitual o de uso continuo
 

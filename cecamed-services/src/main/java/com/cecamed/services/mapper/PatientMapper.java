@@ -91,6 +91,7 @@ public class PatientMapper {
                 .nonPathologicalHistory(record.getNonPathologicalHistory())
                 .familyHistory(record.getFamilyHistory())
                 .surgicalHistory(record.getSurgicalHistory())
+                .traumaticHistory(record.getTraumaticHistory())
                 .currentMedications(record.getCurrentMedications())
                 .generalObservations(record.getGeneralObservations())
                 .createdAt(record.getCreatedAt())
@@ -109,6 +110,7 @@ public class PatientMapper {
         record.setNonPathologicalHistory(dto.getNonPathologicalHistory());
         record.setFamilyHistory(dto.getFamilyHistory());
         record.setSurgicalHistory(dto.getSurgicalHistory());
+        record.setTraumaticHistory(dto.getTraumaticHistory());
         record.setCurrentMedications(dto.getCurrentMedications());
         record.setGeneralObservations(dto.getGeneralObservations());
     }

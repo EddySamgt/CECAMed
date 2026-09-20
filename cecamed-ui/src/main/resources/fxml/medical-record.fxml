@@ -14,6 +14,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -88,53 +89,49 @@
                             <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
                         </columnConstraints>
 
-                        <!-- Alergias -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                            <HBox alignment="CENTER_LEFT" spacing="6.0">
-                                <FontIcon iconColor="#D32F2F" iconLiteral="fth-alert-circle" iconSize="15"/>
-                                <Label styleClass="form-field-label" style="-fx-text-fill: #D32F2F;" text="Alergias Conocidas (Medicamentos, Alimentos, etc.)"/>
-                            </HBox>
-                            <TextArea fx:id="allergiesArea" prefRowCount="2" promptText="Indicar alergias o 'Ninguna conocida'"/>
+                            <Label styleClass="form-field-label" text="Familiares"/>
+                            <TextArea fx:id="familyHistoryArea" prefRowCount="3" wrapText="true" promptText="Enfermedades en padres, abuelos o hermanos..."/>
                         </VBox>
 
-                        <!-- Medicación Habitual -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                            <HBox alignment="CENTER_LEFT" spacing="6.0">
-                                <FontIcon iconColor="#0288D1" iconLiteral="fth-activity" iconSize="15"/>
-                                <Label styleClass="form-field-label" text="Medicación Actual / Uso Continuo"/>
-                            </HBox>
-                            <TextArea fx:id="currentMedicationsArea" prefRowCount="2" promptText="Fármacos actuales, dosis y frecuencia"/>
+                            <Label styleClass="form-field-label" text="Quirúrgicos"/>
+                            <TextArea fx:id="surgicalHistoryArea" prefRowCount="3" wrapText="true" promptText="Cirugías y hospitalizaciones previas..."/>
                         </VBox>
 
-                        <!-- Antecedentes Patológicos -->
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                            <Label styleClass="form-field-label" text="Antecedentes Patológicos Personales"/>
-                            <TextArea fx:id="pathologicalHistoryArea" prefRowCount="3" promptText="Enfermedades crónicas: HTA, Diabetes, Asma..."/>
+                            <Label styleClass="form-field-label" text="Médicos"/>
+                            <TextArea fx:id="pathologicalHistoryArea" prefRowCount="3" wrapText="true" promptText="Enfermedades previas y crónicas: hipertensión, diabetes, asma..."/>
                         </VBox>
 
                         <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <Label styleClass="form-field-label" text="Antecedentes ginecoobstétricos"/>
+                            <Label styleClass="form-field-label" text="Traumáticos"/>
+                            <TextArea fx:id="traumaticHistoryArea" prefRowCount="3" wrapText="true" promptText="Fracturas, accidentes, lesiones y secuelas..."/>
+                        </VBox>
+
+                        <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                            <Label styleClass="form-field-label" text="Alérgicos"/>
+                            <TextArea fx:id="allergiesArea" prefRowCount="3" wrapText="true" promptText="Medicamentos, alimentos y otras alergias, o 'Ninguna conocida'"/>
+                        </VBox>
+
+                        <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <Label styleClass="form-field-label" text="Ginecoobstétricos"/>
                             <TextArea fx:id="gynecologicalObstetricHistoryArea" prefRowCount="3" wrapText="true" promptText="Menstruación, embarazos, partos, cesáreas, abortos..."/>
                         </VBox>
-
-                        <!-- Antecedentes Familiares -->
-                        <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                            <Label styleClass="form-field-label" text="Antecedentes Heredofamiliares"/>
-                            <TextArea fx:id="familyHistoryArea" prefRowCount="3" promptText="Enfermedades en padres, abuelos o hermanos..."/>
-                        </VBox>
-
-                        <!-- Antecedentes Quirúrgicos -->
-                        <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <Label styleClass="form-field-label" text="Antecedentes Quirúrgicos y Hospitalizaciones"/>
-                            <TextArea fx:id="surgicalHistoryArea" prefRowCount="3" promptText="Cirugías previas, traumatismos, transfusiones..."/>
-                        </VBox>
-
-                        <!-- Observaciones Generales -->
-                        <VBox spacing="6.0" styleClass="cecamed-card" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
-                            <Label styleClass="form-field-label" text="Observaciones Clínicas Generales"/>
-                            <TextArea fx:id="generalObservationsArea" prefRowCount="2" promptText="Notas adicionales del expediente..."/>
-                        </VBox>
                     </GridPane>
+
+                    <TitledPane text="Información clínica adicional" expanded="false">
+                        <VBox spacing="14.0">
+                            <VBox spacing="6.0">
+                                <Label styleClass="form-field-label" text="Medicación actual / Uso continuo"/>
+                                <TextArea fx:id="currentMedicationsArea" prefRowCount="2" wrapText="true" promptText="Fármacos actuales, dosis y frecuencia"/>
+                            </VBox>
+                            <VBox spacing="6.0">
+                                <Label styleClass="form-field-label" text="Observaciones clínicas generales"/>
+                                <TextArea fx:id="generalObservationsArea" prefRowCount="2" wrapText="true" promptText="Notas adicionales del expediente..."/>
+                            </VBox>
+                        </VBox>
+                    </TitledPane>
 
                     <HBox alignment="CENTER_RIGHT" spacing="12.0">
                         <Button fx:id="saveRecordButton" onAction="#handleSaveMedicalRecord" styleClass="primary-button" text="Guardar Antecedentes">
